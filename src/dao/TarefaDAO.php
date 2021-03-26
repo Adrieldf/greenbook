@@ -1,6 +1,6 @@
 <?php
 
-namespace greenbook\pdo;
+namespace greenbook\dao;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
@@ -9,7 +9,7 @@ use greenbook\model\Tarefa;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-class TarefaPDO
+class TarefaDAO
 {
     private EntityManagerInterface $entityManager;
     private ObjectRepository $repository;
