@@ -2,7 +2,6 @@
 
 namespace greenbook\model;
 
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @Entity
@@ -14,7 +13,7 @@ class Tarefa
      * @GeneratedValue
      * @Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @Column(type="string")
@@ -31,7 +30,15 @@ class Tarefa
      */
     private int $valorEmMoedas;
 
-    public function getId()
+
+    public function construct(string $descricao, int $valorEmPontos, int $valorEmMoedas)
+    {
+        $this->descricao = $descricao;
+        $this->valorEmPontos = $valorEmPontos;
+        $this->valorEmMoedas = $valorEmMoedas;
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }

@@ -28,6 +28,25 @@ class TarefaPDO
         return $tarefa;
     }
 
+    function update(int $id,Tarefa $tarefa): Tarefa
+    {
+        /** @var Tarefa $objetoAntigo */
+        $objetoAntigo = $this->entityManager->getReference(Tarefa::class, $id);
+        $objetoAntigo
+            ->setDescricao($tarefa->getDescricao())
+            ->setValorEmPontos($tarefa->getValorEmPontos())
+            ->setValorEmMoedas($tarefa->getValorEmMoedas());
+
+        $this->entityManager->flush();
+        return $objetoAntigo;
+    }
+
+    function delete(int $id): void
+    {
+        $objeto = $this->entityManager->getReference(Tarefa::class, $id);
+        $this->entityManager->remove($objeto);
+        $this->entityManager->flush();
+    }
 
     function findAll(): array
     {
