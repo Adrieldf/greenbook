@@ -2,10 +2,9 @@
 
 namespace greenbook\model;
 
+use greenbook\helper\EntityManagerFactory;
 
-/**
- * @Entity
- */
+/** @Entity(repositoryClass="greenbook\repository\TarefaRepository") */
 class Tarefa
 {
     /**
@@ -15,23 +14,17 @@ class Tarefa
      */
     private int $id;
 
-    /**
-     * @Column(type="string")
-     */
+    /** @Column(type="string") */
     private string $descricao;
 
-    /**
-     * @Column(type="integer")
-     */
+    /** @Column(type="integer") */
     private int $valorEmPontos;
 
-    /**
-     * @Column(type="integer")
-     */
+    /** @Column(type="integer") */
     private int $valorEmMoedas;
 
 
-    public function construct(string $descricao, int $valorEmPontos, int $valorEmMoedas)
+    public function __construct(string $descricao, int $valorEmPontos, int $valorEmMoedas)
     {
         $this->descricao = $descricao;
         $this->valorEmPontos = $valorEmPontos;
@@ -40,6 +33,11 @@ class Tarefa
 
     public function getId(): int
     {
+        $entityManagerFactory = new EntityManagerFactory();
+        $entityManager = $entityManagerFactory->getEntityManager();
+        $objectRepository = $entityManager->getRepository(Tarefa::class);
+        $objectRepository->findOneByDescricao();
+
         return $this->id;
     }
 

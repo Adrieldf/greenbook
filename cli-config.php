@@ -1,7 +1,7 @@
 <?php
 
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use greenbook\Helper\EntityManagerFactory;
+use greenbook\helper\EntityManagerFactory;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

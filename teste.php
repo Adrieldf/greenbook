@@ -1,6 +1,6 @@
 <?php
 
-use greenbook\Helper\EntityManagerFactory;
+use greenbook\helper\EntityManagerFactory;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
