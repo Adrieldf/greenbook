@@ -33,11 +33,6 @@ class Tarefa
 
     public function getId(): int
     {
-        $entityManagerFactory = new EntityManagerFactory();
-        $entityManager = $entityManagerFactory->getEntityManager();
-        $objectRepository = $entityManager->getRepository(Tarefa::class);
-        $objectRepository->findOneByDescricao();
-
         return $this->id;
     }
 
