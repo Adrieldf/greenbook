@@ -2,7 +2,7 @@
 
 namespace greenbook\model;
 
-/** @Entity() */
+/** @Entity(repositoryClass="greenbook\repository\ComentarioRepository") */
 class Comentario
 {
     /**

@@ -2,8 +2,6 @@
 
 namespace greenbook\model;
 
-use greenbook\helper\EntityManagerFactory;
-
 /** @Entity(repositoryClass="greenbook\repository\TarefaRepository") */
 class Tarefa
 {

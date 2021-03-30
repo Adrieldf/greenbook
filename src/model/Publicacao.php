@@ -4,7 +4,7 @@ namespace greenbook\model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-/** @Entity() */
+/** @Entity(repositoryClass="greenbook\repository\PublicacaoRepository") */
 class Publicacao
 {
     /**

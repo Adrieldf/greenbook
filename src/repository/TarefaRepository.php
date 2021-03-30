@@ -42,6 +42,7 @@ class TarefaRepository extends EntityRepository
         $entityManager->flush();
     }
 
+    //não funciona
     function findOneByDescricao(string $descricao): Tarefa
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

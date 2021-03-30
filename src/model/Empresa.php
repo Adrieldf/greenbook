@@ -2,7 +2,7 @@
 
 namespace greenbook\model;
 
-/** @Entity() */
+/** @Entity(repositoryClass="greenbook\repository\EmpresaRepository") */
 class Empresa extends Cadastravel
 {
     /**

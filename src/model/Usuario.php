@@ -5,7 +5,7 @@ namespace greenbook\model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-/** @Entity() */
+/** @Entity(repositoryClass="greenbook\repository\UsuarioRepository") */
 class Usuario extends Cadastravel
 {
     /**
