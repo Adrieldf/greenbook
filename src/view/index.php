@@ -2,20 +2,22 @@
 <?php
 require_once("../controller/MainController.php");
 require_once('../../vendor/autoload.php');
+require_once("header.php");
 ?>
 
 <html>
 
-<head>
-    <title>
-        <?= $title ?>
-    </title>
-</head>
+<?php
+    include("header.php");
+
+    include("navbar.php");
+?>
 
 <body>
-<h1>
-    <?= $message ?>
-</h1>
+
+    <h4>
+       homepage
+    </h4>
 
 </body>
 
