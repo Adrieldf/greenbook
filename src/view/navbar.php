@@ -28,9 +28,9 @@ require_once("header.php");
       </ul>
     
       <div class="d-flex">
-        <button class="btn btn-outline-success navbar-button" type="submit">Cadastrar-se</button>
+        <button class="btn btn-outline-success navbar-button" onclick="window.location.href='signup.php';">Cadastrar-se</button>
         &nbsp;
-        <button class="btn btn-outline-success navbar-button" type="submit">Login</button>
+        <button class="btn btn-outline-success navbar-button" onclick="window.location.href='login.php';">Login</button>
       </div>
     </div>
   </div>
