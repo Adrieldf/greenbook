@@ -18,7 +18,7 @@ class TarefaRepository extends EntityRepository
         return $tarefa;
     }
 
-    function update(int $id,Tarefa $tarefa): Tarefa
+    function update(int $id, Tarefa $tarefa): Tarefa
     {
         $entityManager = $this->getEntityManager();
 
@@ -49,8 +49,9 @@ class TarefaRepository extends EntityRepository
 
         return $qb->select('tarefa')
             ->from('Tarefa', 'tarefa')
-            ->where('tarefa = ?1')
+            ->where('tarefa = t1')
             ->getQuery()
+            ->setParameter("t1", $descricao)
             ->getResult();
     }
 }
