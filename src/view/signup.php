@@ -8,11 +8,11 @@ include("navbar.php");
 
 <body class="container-green-bg">
 
-    <div class="container ">
+    <div class="container-fluid ">
         <div class="row">&nbsp;</div>
         <div class="row">
-            <div class="col"></div>
-            <div class="card col-xs-12">
+            <div class="col-md-4"></div>
+            <div class="card col-md-4">
                 <div class="card-body">
                     <h5 class="card-title">Seja bem-vinda(o)!</h5>
                     <br />
@@ -39,7 +39,7 @@ include("navbar.php");
                     </form>
                 </div>
             </div>
-            <div class="col"></div>
+            <div class="col-md-4"></div>
         </div>
 </body>
 
