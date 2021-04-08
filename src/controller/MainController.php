@@ -1,5 +1,5 @@
 <?php
 
-$title = "Hello World!";
+$title = "Greenbook - Promovendo a sustentabilidade!";
 
 ?>
