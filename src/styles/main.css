@@ -43,3 +43,50 @@
 .container-green-bg {
   background-color: var(--light-green);
 }
+
+
+.home-button-fazer-parte{
+  text-align: center;
+}
+
+.home-text-ranking{
+  text-align: center;
+}
+
+.home-container-ranking{
+  border-style: groove; 
+  border-color: green;
+}
+
+.home-table{
+  border: 1px solid black; 
+  border-collapse: collapse;
+}
+
+.home-table-header-col1{
+  text-align: center; 
+  width: 80px;
+  border: 1px solid black; 
+  border-collapse: collapse;
+   background-color: grey;
+}
+
+.home-table-header-col2{
+  text-align: center; 
+  width: 90px;
+  border: 1px solid black; 
+  border-collapse: collapse;
+   background-color: grey;
+}
+
+.home-table-header-col3{
+  text-align: center; 
+  width: 230px;
+  border: 1px solid black; 
+  border-collapse: collapse;
+   background-color: grey;
+}
+
+.home-companies{
+  background-color: white;
+}

@@ -33,8 +33,8 @@ include("navbar.php");
                     teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste
                 </p>
                 <div>
-                    <button class="btn btn-outline-success navbar-button" style="text-align: center">Fazer parte</button>
-                </div> 
+                    <button class="btn btn-outline-success navbar-button home-button-fazer-parte">Fazer parte</button>
+                </div>
             </div>
 
         </div>
@@ -43,31 +43,33 @@ include("navbar.php");
 
     <div class="container-fluid p-3 my-3 bg-green">
         <div class="row">
-            <div class="col-4">
-                <div class="container p-3 my-3 bg-success" style="border-style: groove; border-color: green">
-                    <h2 style="text-align: center">Ranking</h2>
-                    <table style="border: 1px solid black; border-collapse: collapse;">
-                        <tr>
-                            <th style="text-align: center; width: 80px;border: 1px solid black; border-collapse: collapse; background-color: grey;">Posição</th>
-                            <th style="text-align: center; width: 90px;border: 1px solid black; border-collapse: collapse; background-color: grey;">Pontos</th>
-                            <th style="text-align: center; width: 230px;border: 1px solid black; border-collapse: collapse; background-color: grey;">Nome</th>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">1º</td>
-                            <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">100</td>
-                            <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">José</td>
-                        </tr>
-                    </table>
+            <div class="col-md-4">
+                <div class="container p-3 my-3 bg-success home-container-ranking">
+                    <h2 class="home-text-ranking">Ranking</h2>
+                    <div class="table-responsive-xl">
+                        <table class="home-table">
+                            <tr>
+                                <th class="home-table-header-col1">Posição</th>
+                                <th class="home-table-header-col2">Pontos</th>
+                                <th class="home-table-header-col3">Nome</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">1º</td>
+                                <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">100</td>
+                                <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">José</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="col-8" style="background-color: white;">
+            <div class="col-md-8 home-companies">
                 <h5>Empresas apoiadoras</h5>
                 <div class="container-fluid p-3 my-3 border">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <p>imagem da empresa 1</p>
                         </div>
-                        <div class="col-8">texto texto texto texto texto texto texto texto texto texto
+                        <div class="col-md-8">texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto
@@ -76,10 +78,10 @@ include("navbar.php");
                 </div>
                 <div class="container-fluid p-3 my-3 border">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <p>imagem da empresa 2</p>
                         </div>
-                        <div class="col-8">texto texto texto texto texto texto texto texto texto texto
+                        <div class="col-md-8">texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto
@@ -88,10 +90,10 @@ include("navbar.php");
                 </div>
                 <div class="container-fluid p-3 my-3 border">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <p>imagem da empresa 3</p>
                         </div>
-                        <div class="col-8">texto texto texto texto texto texto texto texto texto texto
+                        <div class="col-md-8">texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto
                             texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto
