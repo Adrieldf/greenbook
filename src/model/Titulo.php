@@ -13,5 +13,5 @@ class Titulo extends Recompensa
     private int $id;
 
     /** @Column(type="string") */
-    private string $titulo;
+    private string $nome;
 }

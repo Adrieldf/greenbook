@@ -17,8 +17,8 @@ class Publicacao
     /** @Column(type="string") */
     private string $texto;
 
-    /** @ManyToOne(targetEntity="Tarefa") */
-    private Tarefa $tarefa;
+    /** @OneToOne(targetEntity="TarefaConcluida") */
+    private TarefaConcluida $tarefaConcluida;
 
     //private Cadastravel $publicador;
 

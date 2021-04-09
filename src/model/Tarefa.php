@@ -21,6 +21,8 @@ class Tarefa
     /** @Column(type="integer") */
     private int $valorEmMoedas;
 
+    /** @ManyToOne(targetEntity="TipoDeTarefa") */
+    private TipoDeTarefa $tipoDeTarefa;
 
     public function __construct(string $descricao, int $valorEmPontos, int $valorEmMoedas)
     {

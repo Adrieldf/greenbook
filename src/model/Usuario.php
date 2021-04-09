@@ -39,11 +39,13 @@ class Usuario extends Cadastravel
     /** @ManyToMany(targetEntity="Titulo") */
     private ArrayCollection $titulos;
 
-    /** @ManyToMany(targetEntity="Tarefa") */
+    /** @OneToMany(targetEntity="TarefaConcluida") */
     private ArrayCollection $tarefas;
 
-    public function __construct(string $nome, string $apelido, string $cpf)
+    public function __construct(string $email, string $senha, string $nome, string $apelido, string $cpf)
     {
+        $this->email = $email;
+        $this->senha = $senha;
         $this->nome = $nome;
         $this->apelido = $apelido;
         $this->cpf = $cpf;
@@ -60,12 +62,6 @@ class Usuario extends Cadastravel
     public function addMoedas(int $moedas): int
     {
         return $this->moedas += $moedas;
-    }
-
-    public function addTarefa(Tarefa $tarefa): Usuario
-    {
-        $this->tarefas->add($tarefa);
-        return $this;
     }
 
     public function getTarefas(): Collection
