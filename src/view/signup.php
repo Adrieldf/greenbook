@@ -16,22 +16,22 @@ include("navbar.php");
                 <div class="card-body">
                     <h5 class="card-title">Seja bem-vinda(o)!</h5>
                     <br />
-                    <form>
+                    <form action="../controller/SignupController.php" method="get">
                         <div class="mb-3">
                             <label for="txtNomeCompleto" class="form-label">Nome completo</label>
-                            <input type="text" class="form-control" id="txtNomeCompleto" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" name="txtNomeCompleto" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="txtEmail" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" name="txtEmail" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="txtSenha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="txtSenha">
+                            <input type="password" class="form-control" name="txtSenha">
                         </div>
                         <div class="mb-3">
                             <label for="txtRepitaSenha" class="form-label">Repita a senha</label>
-                            <input type="password" class="form-control" id="txtRepitaSenha">
+                            <input type="password" class="form-control" name="txtRepitaSenha">
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary bg-green">Criar conta</button>

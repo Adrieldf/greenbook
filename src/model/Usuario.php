@@ -42,12 +42,37 @@ class Usuario extends Cadastravel
     /** @ManyToMany(targetEntity="Tarefa") */
     private ArrayCollection $tarefas;
 
-    public function __construct(string $nome, string $apelido, string $cpf)
+    public function __construct()
     {
-        $this->nome = $nome;
-        $this->apelido = $apelido;
-        $this->cpf = $cpf;
-        $this->tarefas = new ArrayCollection();
+       
+    }
+
+    public function fromCPF(string $nome, string $apelido, string $cpf){
+        $usuario = new Usuario();
+        $usuario->nome = $nome;
+        $usuario->apelido = $apelido;
+        $usuario->cpf = $cpf;
+        $usuario->titulos = new ArrayCollection();
+        $usuario->tarefas = new ArrayCollection();
+        $usuario->moedas = 0;
+        $usuario->pontuacaoGeral = 0;
+        $usuario->pontuacaoSemanal = 0;
+        $usuario->pontuacaoMensal = 0;
+        return $usuario;
+    }
+
+    public function fromCadastro(string $nome, string $email, string $senha){
+        $usuario = new Usuario();
+        $usuario->nome = $nome;
+        $usuario->setEmail($email);
+        $usuario->setSenha($senha);
+        $usuario->titulos = new ArrayCollection();
+        $usuario->tarefas = new ArrayCollection();
+        $usuario->moedas = 0;
+        $usuario->pontuacaoGeral = 0;
+        $usuario->pontuacaoSemanal = 0;
+        $usuario->pontuacaoMensal = 0;
+        return $usuario;
     }
 
     public function addPontos(int $pontos): int
