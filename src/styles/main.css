@@ -10,32 +10,31 @@
   background-color: var(--dark-green);
   box-shadow: 0px 1px 5px var(--light-green);
   border-color: var(--light-green);
-  
 }
 
 .bg-green:hover {
   background-color: var(--green);
   box-shadow: 0px 1px 5px var(--green);
   border-color: var(--green);
-  
 }
+
 .navbar-button {
-    color: var(--dark-text);
-    border-color: var(--dark-text);
-    background-color: var(--light-green);
+  color: var(--dark-text);
+  border-color: var(--dark-text);
+  background-color: var(--light-green);
 }
+
 .navbar-button:hover {
-    color: var(--dark-text);
-    border-color: var(--dark-text);
-    background-color: var(--green);
+  color: var(--dark-text);
+  border-color: var(--dark-text);
+  background-color: var(--green);
 }
 
 .navbar-title {
-    font-size: x-large;
+  font-size: x-large;
 }
 
 .navbar-bg {
-  
   background-color: var(--dark-green);
   box-shadow: 0px 1px 5px var(--dark-green);
 }
@@ -44,49 +43,64 @@
   background-color: var(--light-green);
 }
 
-
-.home-button-fazer-parte{
+.home-button-fazer-parte {
   text-align: center;
 }
 
-.home-text-ranking{
+.home-text-ranking {
   text-align: center;
 }
 
-.home-container-ranking{
-  border-style: groove; 
+.home-container-ranking {
+  border-style: groove;
   border-color: green;
 }
 
-.home-table{
-  border: 1px solid black; 
+.home-table {
+  border: 1px solid black;
   border-collapse: collapse;
 }
 
-.home-table-header-col1{
-  text-align: center; 
+.home-table-header-col1 {
+  text-align: center;
   width: 80px;
-  border: 1px solid black; 
+  border: 1px solid black;
   border-collapse: collapse;
-   background-color: grey;
+  background-color: grey;
 }
 
-.home-table-header-col2{
-  text-align: center; 
+.home-table-header-col2 {
+  text-align: center;
   width: 90px;
-  border: 1px solid black; 
+  border: 1px solid black;
   border-collapse: collapse;
-   background-color: grey;
+  background-color: grey;
 }
 
-.home-table-header-col3{
-  text-align: center; 
+.home-table-header-col3 {
+  text-align: center;
   width: 230px;
-  border: 1px solid black; 
+  border: 1px solid black;
   border-collapse: collapse;
-   background-color: grey;
+  background-color: grey;
 }
 
-.home-companies{
+.home-companies {
   background-color: white;
+}
+
+.perfil-usuario-imagem {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.perfil-usuario-titulo {
+  color: #6aa84f;
+  text-align: center;
 }

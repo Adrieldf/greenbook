@@ -2,8 +2,8 @@
 
 namespace greenbook\model;
 
-/** @Entity() */
-class Titulo extends Recompensa
+/** @Entity*/
+class TipoDeTarefa
 {
     /**
      * @Id
@@ -14,4 +14,7 @@ class Titulo extends Recompensa
 
     /** @Column(type="string") */
     private string $nome;
+
+    /** @Column(type="string") */
+    private string $descricao;
 }

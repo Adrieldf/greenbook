@@ -6,10 +6,10 @@ namespace greenbook\model;
 abstract class Cadastravel
 {
     /** @Column(type="string") */
-    private string $email;
+    protected string $email;
 
     /** @Column(type="string") */
-    private string $senha;
+    protected string $senha;
 
     public function getEmail() {
         return $this->email;
