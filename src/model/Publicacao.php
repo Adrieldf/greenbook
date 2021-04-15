@@ -3,6 +3,7 @@
 namespace greenbook\model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Column;
 
 /** @Entity(repositoryClass="greenbook\repository\PublicacaoRepository") */
 class Publicacao
@@ -20,7 +21,17 @@ class Publicacao
     /** @OneToOne(targetEntity="TarefaConcluida") */
     private TarefaConcluida $tarefaConcluida;
 
-    //private Cadastravel $publicador;
+    /**
+     * @ManyToOne(targetEntity="Usuario")
+     * @Column (nullable=true)
+     */
+    private Usuario $usuario;
+
+    /**
+     * @ManyToOne(targetEntity="Empresa")
+     * @Column (nullable=true)
+     */
+    private Empresa $empresa;
 
     /** @OneToMany(targetEntity="Comentario", mappedBy="publicacao") */
     private ArrayCollection $comentarios;
@@ -30,5 +41,6 @@ class Publicacao
 
     /** @OneToMany(targetEntity="Imagem", mappedBy="publicacao") */
     private ArrayCollection $imagem;
+
 
 }

@@ -39,7 +39,7 @@ class Usuario extends Cadastravel
     /** @ManyToMany(targetEntity="Titulo") */
     private ArrayCollection $titulos;
 
-    /** @OneToMany(targetEntity="TarefaConcluida") */
+    /** @OneToMany(targetEntity="TarefaConcluida", mappedBy="tarefa") */
     private ArrayCollection $tarefas;
 
     public function __construct(string $email, string $senha, string $nome, string $apelido, string $cpf)

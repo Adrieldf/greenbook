@@ -12,9 +12,6 @@ class Reacao
      */
     private int $id;
 
-    /** @Column(type="string") */
-    private string $nome;
-
     /** @ManyToOne(targetEntity="Usuario") */
     private Usuario $usuario;
 }
