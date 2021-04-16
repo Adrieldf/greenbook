@@ -15,17 +15,15 @@ $entityManagerFactory = new EntityManagerFactory();
 
 $entityManager = $entityManagerFactory->getEntityManager();
 
-$repo = $entityManager->getRepository(Usuario::class);
+$repository = $entityManager->getRepository(Usuario::class);
 
 error_log($entityManager);
-/*
 $usuario = new Usuario();
 $usuario = $usuario->fromCadastro($name, $email, $password);
-//$usuario = $usuario->fromCPF("adriel", "adr", "00000000000");
 
 try {
-    $this->repositoryClass($repo)->save($usuario);
-    //$repo->save($usuario);
+    //$this->repositoryClass($repo)->save($usuario);
+    $repository->save($usuario);
     
 }catch (Exception $e){
    echo($e);
@@ -36,7 +34,7 @@ function repositoryClass($myClass): UsuarioRepository
 {
     return $myClass;
 }
-*/
+
 header("Location: ../view/login.php");
 
 exit;

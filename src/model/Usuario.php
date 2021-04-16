@@ -42,8 +42,6 @@ class Usuario extends Cadastravel
         $usuario->nome = $nome;
         $usuario->apelido = $apelido;
         $usuario->cpf = $cpf;
-        $usuario->titulos = new ArrayCollection();
-        $usuario->tarefas = new ArrayCollection();
         return $usuario;
     }
 
@@ -53,8 +51,6 @@ class Usuario extends Cadastravel
         $usuario->nome = $nome;
         $usuario->setEmail($email);
         $usuario->setSenha($senha);
-        $usuario->titulos = new ArrayCollection();
-        $usuario->tarefas = new ArrayCollection();
         return $usuario;
     }
 
