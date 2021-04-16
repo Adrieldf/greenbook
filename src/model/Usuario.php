@@ -4,6 +4,7 @@ namespace greenbook\model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\Column;
 
 /** @Entity(repositoryClass="greenbook\repository\UsuarioRepository") */
 class Usuario extends Cadastravel
@@ -18,23 +19,11 @@ class Usuario extends Cadastravel
     /** @Column(type="string") */
     private string $nome;
 
-    /** @Column(type="string") */
+    /** @Column(type="string", nullable=true) */
     private string $apelido;
 
-    /** @Column(type="string") */
+    /** @Column(type="string", nullable=true) */
     private string $cpf;
-
-    /** @Column(type="integer") */
-    private int $moedas;
-
-    /** @Column(type="integer") */
-    private int $pontuacaoGeral;
-
-    /** @Column(type="integer") */
-    private int $pontuacaoSemanal;
-
-    /** @Column(type="integer") */
-    private int $pontuacaoMensal;
 
     /** @ManyToMany(targetEntity="Titulo") */
     private ArrayCollection $titulos;
@@ -47,31 +36,25 @@ class Usuario extends Cadastravel
        
     }
 
-    public function fromCPF(string $nome, string $apelido, string $cpf){
+    public function fromCPF(string $nome, string $apelido, string $cpf): Usuario
+    {
         $usuario = new Usuario();
         $usuario->nome = $nome;
         $usuario->apelido = $apelido;
         $usuario->cpf = $cpf;
         $usuario->titulos = new ArrayCollection();
         $usuario->tarefas = new ArrayCollection();
-        $usuario->moedas = 0;
-        $usuario->pontuacaoGeral = 0;
-        $usuario->pontuacaoSemanal = 0;
-        $usuario->pontuacaoMensal = 0;
         return $usuario;
     }
 
-    public function fromCadastro(string $nome, string $email, string $senha){
+    public function fromCadastro(string $nome, string $email, string $senha): Usuario
+    {
         $usuario = new Usuario();
         $usuario->nome = $nome;
         $usuario->setEmail($email);
         $usuario->setSenha($senha);
         $usuario->titulos = new ArrayCollection();
         $usuario->tarefas = new ArrayCollection();
-        $usuario->moedas = 0;
-        $usuario->pontuacaoGeral = 0;
-        $usuario->pontuacaoSemanal = 0;
-        $usuario->pontuacaoMensal = 0;
         return $usuario;
     }
 
