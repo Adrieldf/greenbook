@@ -26,14 +26,13 @@ class Usuario extends Cadastravel
     private string $cpf;
 
     /** @ManyToMany(targetEntity="Titulo") */
-    private ArrayCollection $titulos;
+    //   private ArrayCollection $titulos;
 
     /** @OneToMany(targetEntity="TarefaConcluida", mappedBy="tarefa") */
-    private ArrayCollection $tarefas;
+    //   private ArrayCollection $tarefas;
 
     public function __construct()
     {
-       
     }
 
     public function fromCPF(string $nome, string $apelido, string $cpf): Usuario
@@ -42,6 +41,7 @@ class Usuario extends Cadastravel
         $usuario->nome = $nome;
         $usuario->apelido = $apelido;
         $usuario->cpf = $cpf;
+
         return $usuario;
     }
 
@@ -69,5 +69,18 @@ class Usuario extends Cadastravel
     public function getTarefas(): Collection
     {
         return $this->tarefas;
+    }
+
+    public function getNome(): string
+    {
+        return $this->nome;
+    }
+    public function getSenha(): string
+    {
+        return $this->senha;
+    }
+    public function getId(): int
+    {
+        return $this->id;
     }
 }
