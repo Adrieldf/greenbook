@@ -1,6 +1,7 @@
 <?php
 require_once("header.php");
 session_start();
+$nomeUsuario = @$_SESSION["nome_usuario"];
 ?>
 
 <header>
@@ -27,10 +28,9 @@ session_start();
         </li>
      -->
         </ul>
-        <?php if (isset($_SESSION["nome_usuario"])) : ?>
+        <?php if ($nomeUsuario != "") : ?>
           <div class="d-flex">
-            
-            <button class="btn btn-outline-success navbar-button" onclick="window.location.href='perfil-usuario.php';"><?php $_SESSION["nome_usuario"]; ?></button>
+            <button class="btn btn-outline-success navbar-button" onclick="window.location.href='perfil-usuario.php';"> <?=$nomeUsuario?> </button>
             &nbsp;
             <button class="btn btn-outline-success navbar-button" onclick="window.location.href='../controller/LogoutController.php';">Sair</button>
           </div>
