@@ -3,12 +3,25 @@
 namespace greenbook\repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\TransactionRequiredException;
 use greenbook\model\Usuario;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 class UsuarioRepository extends EntityRepository
 {
+    function findById(int $id): ?Usuario
+    {
+        $entityManager = $this->getEntityManager();
+        try {
+            return $entityManager->find(Usuario::class, $id);
+        } catch (OptimisticLockException | TransactionRequiredException | ORMException $e) {
+            return null;
+        }
+    }
+
     function save(Usuario $usuario): Usuario
     {
         $entityManager = $this->getEntityManager();

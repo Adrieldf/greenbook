@@ -5,6 +5,11 @@ namespace greenbook\model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /** @Entity(repositoryClass="greenbook\repository\UsuarioRepository") */
 class Usuario extends Cadastravel
@@ -25,11 +30,17 @@ class Usuario extends Cadastravel
     /** @Column(type="string", nullable=true) */
     private string $cpf;
 
+    /** @Column(type="integer", nullable=true)  */
+    private int $moedas;
+
+    /** @Column(type="integer", nullable=true)  */
+    private int $pontuacaoGeral;
+
     /** @ManyToMany(targetEntity="Titulo") */
-    //   private ArrayCollection $titulos;
+    private ArrayCollection $titulos;
 
     /** @OneToMany(targetEntity="TarefaConcluida", mappedBy="tarefa") */
-    //   private ArrayCollection $tarefas;
+    private ArrayCollection $tarefas;
 
     public function __construct()
     {
@@ -41,6 +52,8 @@ class Usuario extends Cadastravel
         $usuario->nome = $nome;
         $usuario->apelido = $apelido;
         $usuario->cpf = $cpf;
+        $usuario->moedas = 0;
+        $usuario->pontuacaoGeral = 0;
 
         return $usuario;
     }
@@ -51,36 +64,109 @@ class Usuario extends Cadastravel
         $usuario->nome = $nome;
         $usuario->setEmail($email);
         $usuario->setSenha($senha);
+        $usuario->moedas = 0;
+        $usuario->pontuacaoGeral = 0;
+
         return $usuario;
     }
 
-    public function addPontos(int $pontos): int
+    public function getEmail(): string
     {
-        $this->pontuacaoSemanal += $pontos;
-        $this->pontuacaoMensal += $pontos;
-        return $this->pontuacaoGeral += $pontos;
+        return $this->email;
     }
 
-    public function addMoedas(int $moedas): int
+    public function setEmail(string $email): void
     {
-        return $this->moedas += $moedas;
+        $this->email = $email;
     }
 
-    public function getTarefas(): Collection
+    public function getSenha(): string
     {
-        return $this->tarefas;
+        return $this->senha;
+    }
+
+    public function setSenha(string $senha): void
+    {
+        $this->senha = $senha;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getNome(): string
     {
         return $this->nome;
     }
-    public function getSenha(): string
+
+    public function setNome(string $nome): void
     {
-        return $this->senha;
+        $this->nome = $nome;
     }
-    public function getId(): int
+
+    public function getApelido(): string
     {
-        return $this->id;
+        return $this->apelido;
+    }
+
+    public function setApelido(string $apelido): void
+    {
+        $this->apelido = $apelido;
+    }
+
+    public function getCpf(): string
+    {
+        return $this->cpf;
+    }
+
+    public function setCpf(string $cpf): void
+    {
+        $this->cpf = $cpf;
+    }
+
+    public function getMoedas(): int
+    {
+        return $this->moedas;
+    }
+
+    public function setMoedas(int $moedas): void
+    {
+        $this->moedas = $moedas;
+    }
+
+    public function getPontuacaoGeral(): int
+    {
+        return $this->pontuacaoGeral;
+    }
+
+    public function setPontuacaoGeral(int $pontuacaoGeral): void
+    {
+        $this->pontuacaoGeral = $pontuacaoGeral;
+    }
+
+    public function getTitulos(): ArrayCollection
+    {
+        return $this->titulos;
+    }
+
+    public function setTitulos(ArrayCollection $titulos): void
+    {
+        $this->titulos = $titulos;
+    }
+
+    public function getTarefas(): ArrayCollection
+    {
+        return $this->tarefas;
+    }
+
+    public function setTarefas(ArrayCollection $tarefas): void
+    {
+        $this->tarefas = $tarefas;
     }
 }
