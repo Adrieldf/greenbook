@@ -18,8 +18,8 @@ class Publicacao
     /** @Column(type="string") */
     private string $texto;
 
-    /** @OneToOne(targetEntity="TarefaConcluida") */
-    private TarefaConcluida $tarefaConcluida;
+    /** @OneToOne(targetEntity="TarefaUsuario") */
+    private TarefaUsuario $tarefaConcluida;
 
     /**
      * @ManyToOne(targetEntity="Usuario")

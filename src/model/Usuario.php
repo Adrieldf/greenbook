@@ -3,6 +3,7 @@
 namespace greenbook\model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -29,20 +30,21 @@ class Usuario extends Cadastravel
     /** @Column(type="string", nullable=true) */
     private string $cpf;
 
-    /** @Column(type="integer", nullable=true)  */
+    /** @Column(type="integer", nullable=true) */
     private int $moedas;
 
-    /** @Column(type="integer", nullable=true)  */
+    /** @Column(type="integer", nullable=true) */
     private int $pontuacaoGeral;
 
     /** @ManyToMany(targetEntity="Titulo") */
-    private ArrayCollection $titulos;
+    private Collection $titulos;
 
-    /** @OneToMany(targetEntity="TarefaConcluida", mappedBy="tarefa") */
-    private ArrayCollection $tarefas;
+    /** @OneToMany(targetEntity="TarefaUsuario", mappedBy="usuario", cascade="all") */
+    private Collection $tarefas;
 
     public function __construct()
     {
+
     }
 
     public function fromCPF(string $nome, string $apelido, string $cpf): Usuario
@@ -53,6 +55,8 @@ class Usuario extends Cadastravel
         $usuario->cpf = $cpf;
         $usuario->moedas = 0;
         $usuario->pontuacaoGeral = 0;
+        $this->titulos = new ArrayCollection();
+        $this->tarefas = new ArrayCollection();
 
         return $usuario;
     }
@@ -65,8 +69,25 @@ class Usuario extends Cadastravel
         $usuario->setSenha($senha);
         $usuario->moedas = 0;
         $usuario->pontuacaoGeral = 0;
+        $this->titulos = new ArrayCollection();
+        $this->tarefas = new ArrayCollection();
 
         return $usuario;
+    }
+
+    public function addMoedas(int $moedas): void
+    {
+        $this->moedas = $this->moedas + $moedas;
+    }
+
+    public function addPontos(int $pontos): void
+    {
+        $this->pontuacaoGeral = $this->pontuacaoGeral + $pontos;
+    }
+
+    public function addTarefa(TarefaUsuario $tarefa): void
+    {
+        $this->tarefas->add($tarefa);
     }
 
     public function getEmail(): string
@@ -149,7 +170,7 @@ class Usuario extends Cadastravel
         $this->pontuacaoGeral = $pontuacaoGeral;
     }
 
-    public function getTitulos(): ArrayCollection
+    public function getTitulos(): Collection
     {
         return $this->titulos;
     }
@@ -159,7 +180,7 @@ class Usuario extends Cadastravel
         $this->titulos = $titulos;
     }
 
-    public function getTarefas(): ArrayCollection
+    public function getTarefas(): Collection
     {
         return $this->tarefas;
     }

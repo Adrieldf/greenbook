@@ -2,6 +2,12 @@
 
 namespace greenbook\model;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToOne;
+
 /** @Entity(repositoryClass="greenbook\repository\TarefaRepository") */
 class Tarefa
 {
@@ -24,16 +30,22 @@ class Tarefa
     /** @ManyToOne(targetEntity="TipoDeTarefa") */
     private TipoDeTarefa $tipoDeTarefa;
 
-    public function __construct(string $descricao, int $valorEmPontos, int $valorEmMoedas)
+    public function __construct(string $descricao, int $valorEmPontos, int $valorEmMoedas, TipoDeTarefa $tipoDeTarefa)
     {
         $this->descricao = $descricao;
         $this->valorEmPontos = $valorEmPontos;
         $this->valorEmMoedas = $valorEmMoedas;
+        $this->tipoDeTarefa = $tipoDeTarefa;
     }
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getDescricao(): string
@@ -68,4 +80,16 @@ class Tarefa
         $this->valorEmMoedas = $valorEmMoedas;
         return $this;
     }
+
+    public function getTipoDeTarefa(): TipoDeTarefa
+    {
+        return $this->tipoDeTarefa;
+    }
+
+    public function setTipoDeTarefa(TipoDeTarefa $tipoDeTarefa): void
+    {
+        $this->tipoDeTarefa = $tipoDeTarefa;
+    }
+
+
 }
