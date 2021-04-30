@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 
-/** @Entity*/
+/** @Entity(repositoryClass="greenbook\repository\TarefaUsuarioRepository")*/
 class TarefaUsuario
 {
     /**
