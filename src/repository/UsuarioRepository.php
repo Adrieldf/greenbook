@@ -22,6 +22,12 @@ class UsuarioRepository extends EntityRepository
         }
     }
 
+    function findByEmail(string $email): ?Usuario //falta testar
+    {
+        $entityManager = $this->getEntityManager();
+        return $entityManager->getRepository(Usuario::class)->findOneBy(array('email' => $email));
+    }
+
     function save(Usuario $usuario): Usuario
     {
         $entityManager = $this->getEntityManager();
