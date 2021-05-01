@@ -108,3 +108,64 @@
 .usuario-tab{
   width: 25%;
 }
+
+.tabela{
+  max-height: 250px;
+  width: 100%;
+  margin: 0; 
+  overflow-y: 
+  auto;
+}
+
+.cadastro-form{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cadastro-tarefa-tabela-col1{
+  width: 20%;
+}
+
+.cadastro-tarefa-tabela-col2{
+  width: 20%;
+}
+
+.cadastro-tarefa-tabela-col3{
+  width: 20%;
+}
+
+.cadastro-tarefa-tabela-col4{
+  width: 20%;
+}
+
+.cadastro-tarefa-tabela-col5{
+  width: 20%;
+}
+
+.botao-salvar-tarefa{
+  margin-top: 2.8%;
+}
+
+.cadastro-recompensa-tabela-col1{
+  width: 15%;
+}
+
+.cadastro-recompensa-tabela-col2{
+  width: 15%;
+}
+
+.cadastro-recompensa-tabela-col3{
+  width: 20%;
+}
+
+.cadastro-recompensa-tabela-col4{
+  width: 20%;
+}
+
+.cadastro-recompensa-tabela-col5{
+  width: 20%;
+}
+
+.cadastro-recompensa-tabela-col6{
+  width: 10%;
+}
