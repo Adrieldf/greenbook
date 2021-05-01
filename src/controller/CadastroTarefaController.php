@@ -12,18 +12,29 @@ $descTarefa = @$_POST["txtTarefa"];
 $moedas = @$_POST["txtMoedas"];
 $pontos = @$_POST["txtPontos"];
 
+$idTipoDeTarefa = @$_POST["txtTipoId"]; //adicionei essa variavel, ainda tem que fazer ela vir da view
+
 $factory = new EntityManagerFactory();
-$repository = $factory->getEntityManager()->getRepository(Tarefa::class);
-$repository = repositoryClass($repository);
+$em = $factory->getEntityManager();
 
-$tipoTarefa = new TipoDeTarefa("nome");
-$tarefa = new Tarefa($descTarefa,$pontos,$moedas,$tipoTarefa);
+$tarefaRepository = $em->getRepository(Tarefa::class); //pegando os repositorios
+$tipoTarefaRepository = $em->getRepository(TipoDeTarefa::class); //pegando os repositorios
 
-$result =  $repository->save($tarefa);
+$tarefaRepository = tarefaRepositoryClass($tarefaRepository); //fazendo o cast
+$tipoTarefaRepository = tipoDeTarefaRepositoryClass($tipoTarefaRepository); //fazendo o cast
 
-function repositoryClass($myClass): TarefaRepository
+//$tipoTarefa = new TipoDeTarefa("nome"); //como não é cascade tem que procurar um tipoTarefa no banco
+$tipoTarefa  = $tipoTarefaRepository->findById(2); //pega um tipoTarefa do banco,  no caso o 2 porque o $idTipoDeTarefa ainda nao ta sendo prenchido
+
+$tarefa = new Tarefa($descTarefa,$pontos,$moedas, $tipoTarefa); //cria a tarefa
+$result =  $tarefaRepository->save($tarefa); //salva no bd
+
+function tarefaRepositoryClass($myClass): TarefaRepository //so troquei o nome pra min não me confundir
 {
     return $myClass;
 }
 
-?>
+function tipoDeTarefaRepositoryClass($myClass): TipoDeTarefaRepository //adicionei essa funcao
+{
+    return $myClass;
+}
