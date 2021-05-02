@@ -2,6 +2,10 @@
 
 namespace greenbook\view;
 
+use greenbook\helper\EntityManagerFactory;
+use greenbook\model\TipoDeTarefa;
+use greenbook\repository\TipoDeTarefaRepository;
+
 require_once __DIR__ . '\..\controller\MainController.php';
 require_once __DIR__ . '\..\..\vendor\autoload.php';
 require_once("header.php");
@@ -11,8 +15,19 @@ require_once("header.php");
 
 <?php
 include("header.php");
-
 include("navbar.php");
+
+$factory = new EntityManagerFactory();
+$entityManager = $factory->getEntityManager();
+$tipoRepository = $entityManager->getRepository(TipoDeTarefa::class);
+$tipoRepository = tipoRepositoryClass($tipoRepository);
+
+$tiposTarefas = $tipoRepository->findAll();
+
+function tipoRepositoryClass($myClass): TipoDeTarefaRepository
+{
+    return $myClass;
+}
 ?>
 
 <body>
@@ -37,69 +52,28 @@ include("navbar.php");
                         <div class="tabela scrollable">
                             <table class="table table-hover table-striped table-bordered table-condensed">
                                 <tbody>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cadastro-tarefa-tabela-col1">Editar</td>
-                                        <td class="cadastro-tarefa-tabela-col2">Otto</td>
-                                        <td class="cadastro-tarefa-tabela-col3">@mdo</td>
-                                        <td class="cadastro-tarefa-tabela-col4">Mark</td>
-                                        <td class="cadastro-tarefa-tabela-col5">Eliminar</td>
-                                    </tr>
+                                    <?php
+                                    /*foreach ($tiposTarefas as $linha) {
+                                        echo '<tr>';
+                                        echo '<td class="cadastro-produtos-tabela-col1">' . $linhaP->getFornecedor()->getNome() . '</td>';
+                                        echo '<td class="cadastro-produtos-tabela-col2">';
+                                        echo '<input type="submit" onclick="botaoEditar(
+                                    \'' . $linhaP->getFornecedor()->getNome() . '\',\'' . $linhaP->getNome() . '\',\'' . $linhaP->getDescricao()
+                                            . '\',\'' . $linhaP->getEstoque()->getQuantidade() . '\',\'' . $linhaP->getEstoque()->getPreco() . '\'' . ',' . $linhaP->getID() . ')" name="edit" value="Editar"/>';
+                                        echo '</td>';
+                                        echo '<td class="cadastro-produtos-tabela-col3">' . $linhaP->getID() . '</td>';
+                                        echo '<td class="cadastro-produtos-tabela-col4">' . $linhaP->getNome() . '</td>';
+                                        echo '<td class="cadastro-produtos-tabela-col5">' . $linhaP->getDescricao() . '</td>';
+                                        echo '<td class="cadastro-produtos-tabela-col6">' . $linhaP->getEstoque()->getQuantidade() . '</td>';
+                                        echo '<td class="cadastro-produtos-tabela-col7">' . $linhaP->getEstoque()->getPreco() . '</td>';
+                                        echo '<form method="post" action="../controller/EliminarProdutoController.php">';
+                                        echo '<td class="cadastro-produtos-tabela-col8">';
+                                        echo '<input type="submit" name="clicked[' . $linhaP->getID() . ']" value="Eliminar"/>';
+                                        echo '</td>';
+                                        echo '</form>';
+                                        echo '</tr>';
+                                    }*/
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -109,14 +83,24 @@ include("navbar.php");
                     <form class="cadastro-form" method="POST" action="../controller/CadastroTarefaController.php">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Descrição da tarefa</label>
-                            <textarea class="form-control" id="txtTarefa" name="txtTarefa"rows="2"></textarea>
+                            <textarea class="form-control" id="txtTarefa" name="txtTarefa" rows="2"></textarea>
                         </div>
                         <div class="form-row row">
                             <div class="form-group col-md-3">
+                                <label for="tipo">Tipo de tarefa</label>
+                                <select id="txtTipoTarefa" name="txtTipoTarefa" class="form-control">
+                                    <?php
+                                    foreach ($tiposTarefas as $linha) {
+                                        echo '<option>' . $linha->getNome() . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
                                 <label for="pontos">Pontos</label>
                                 <input type="text" class="form-control" id="txtPontos" name="txtPontos">
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="moedas">Moedas</label>
                                 <input type="text" class="form-control" id="txtMoedas" name="txtMoedas">
                             </div>

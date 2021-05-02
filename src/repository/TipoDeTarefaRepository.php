@@ -22,6 +22,12 @@ class TipoDeTarefaRepository extends EntityRepository
         }
     }
 
+    function findByNome(string $nome): ?TipoDeTarefa
+    {
+        $entityManager = $this->getEntityManager();
+        return $entityManager->getRepository(TipoDeTarefa::class)->findOneBy(array('nome'=>$nome));
+    }
+
     function save(TipoDeTarefa $tipoDeTarefa): ?TipoDeTarefa
     {
         $entityManager = $this->getEntityManager();

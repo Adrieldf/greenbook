@@ -6,7 +6,7 @@ use greenbook\repository\TipoDeTarefaRepository;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-$tarefa = @$_POST["txtTarefa"];
+$id = key($_POST['clicked']);
 
 $factory = new EntityManagerFactory();
 $em = $factory->getEntityManager();
@@ -15,13 +15,16 @@ $tipoTarefaRepository = $em->getRepository(TipoDeTarefa::class);
 
 $tipoTarefaRepository = tipoDeTarefaRepositoryClass($tipoTarefaRepository); 
 
-$tipoTarefa = new TipoDeTarefa($tarefa);
+//$tipoTarefa = $tipoTarefaRepository->findById($id);
 
-$result =  $tipoTarefaRepository->save($tipoTarefa); 
+$result =  $tipoTarefaRepository->delete($id); 
 
 function tipoDeTarefaRepositoryClass($myClass): TipoDeTarefaRepository
 {
     return $myClass;
 }
+
+header("Location: ../view/cadastro-tipotarefa.php");
+exit;
 
 ?>
