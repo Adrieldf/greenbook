@@ -3,8 +3,8 @@
 namespace greenbook\view;
 
 use greenbook\helper\EntityManagerFactory;
-use greenbook\model\Recompensa;
-use greenbook\repository\RecompensaRepository;
+use greenbook\model\Titulo;
+use greenbook\repository\TituloRepository;
 
 require_once __DIR__ . '\..\controller\MainController.php';
 require_once __DIR__ . '\..\..\vendor\autoload.php';
@@ -19,16 +19,15 @@ include("navbar.php");
 
 $factory = new EntityManagerFactory();
 $entityManager = $factory->getEntityManager();
-$recompensaRepository = $entityManager->getRepository(Recompensa::class);
-$recompensaRepository = recompensaRepositoryClass($recompensaRepository);
+$tituloRepository = $entityManager->getRepository(Titulo::class);
+$tituloRepository = tituloRepositoryClass($tituloRepository);
 
-$tiposTarefas = $recompensaRepository->findAll();
+$titulos = $tituloRepository->findAll();
 
-function recompensaRepositoryClass($myClass): RecompensaRepository
+function tituloRepositoryClass($myClass): TituloRepository
 {
     return $myClass;
 }
-
 ?>
 
 <body>
@@ -42,11 +41,12 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                         <table class="table table-striped table-hover table-condensed ">
                             <thead>
                                 <tr>
-                                    <th class="cadastro-recompensa-tabela-col1">Editar</th>
-                                    <th class="cadastro-recompensa-tabela-col2">ID</th>
-                                    <th class="cadastro-recompensa-tabela-col3">Descrição</th>
-                                    <th class="cadastro-recompensa-tabela-col4">Valor</th>
-                                    <th class="cadastro-recompensa-tabela-col5">Eliminar</th>
+                                    <th class="cadastro-titulo-tabela-col1">Editar</th>
+                                    <th class="cadastro-titulo-tabela-col2">ID</th>
+                                    <th class="cadastro-titulo-tabela-col3">Nome</th>
+                                    <th class="cadastro-titulo-tabela-col4">Descrição</th>
+                                    <th class="cadastro-titulo-tabela-col5">Valor</th>
+                                    <th class="cadastro-titulo-tabela-col6">Eliminar</th>
                                 </tr>
                             </thead>
                         </table>
@@ -54,18 +54,20 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                             <table class="table table-hover table-striped table-bordered table-condensed">
                                 <tbody>
                                     <?php
-                                    foreach ($tiposTarefas as $linha) {
+                                    foreach ($titulos as $linha) {
                                         echo '<tr>';
-                                        echo '<td class="cadastro-recompensa-tabela-col1">';
-                                        echo '<input type="submit" onclick="botaoEditarRecompensa(
-                                            \'' . $linha->getDescricao() . '\',' . $linha->getId() . ',' . $linha->getValor()
+                                        echo '<td class="cadastro-titulo-tabela-col1">';
+                                        echo '<input type="submit" onclick="botaoEditarTitulo(
+                                            \'' . $linha->getNome() . '\',\'' . $linha->getDescricao() . '\',' .
+                                            $linha->getValor() . ',' . $linha->getID()
                                             . ')" name="edit" value="Editar"/>';
                                         echo '</td>';
-                                        echo '<td class="cadastro-recompensa-tabela-col2">' . $linha->getID() . '</td>';
-                                        echo '<td class="cadastro-recompensa-tabela-col3">' . $linha->getDescricao() . '</td>';
-                                        echo '<td class="cadastro-recompensa-tabela-col4">' . $linha->getValor() . '</td>';
-                                        echo '<form method="post" action="../controller/EliminaRecompensaController.php">';
-                                        echo '<td class="cadastro-recompensa-tabela-col5">';
+                                        echo '<td class="cadastro-titulo-tabela-col2">' . $linha->getID() . '</td>';
+                                        echo '<td class="cadastro-titulo-tabela-col3">' . $linha->getNome() . '</td>';
+                                        echo '<td class="cadastro-titulo-tabela-col4">' . $linha->getDescricao() . '</td>';
+                                        echo '<td class="cadastro-titulo-tabela-col5">' . $linha->getValor() . '</td>';
+                                        echo '<form method="post" action="../controller/EliminaTituloController.php">';
+                                        echo '<td class="cadastro-titulo-tabela-col6">';
                                         echo '<input type="submit" name="clicked[' . $linha->getID() . ']" value="Eliminar"/>';
                                         echo '</td>';
                                         echo '</form>';
@@ -78,18 +80,22 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                     </div>
                 </div>
                 <div class="container-fluid border" id="insert">
-                    <form class="cadastro-form" method="POST" action="../controller/CadastroRecompensaController.php">
+                    <form class="cadastro-form" method="POST" action="../controller/CadastroTituloController.php">
                         <div class="form-row row">
-                            <div class="form-group col-md-9">
+                            <div class="form-group col-md-4">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control" id="txtNome" name="txtNome">
+                            </div>
+                            <div class="form-group col-md-8">
                                 <label for="pontos">Descrição</label>
                                 <input type="text" class="form-control" id="txtDescricao" name="txtDescricao">
                             </div>
+                        </div>
+                        <div class="form-row row">
                             <div class="form-group col-md-3">
                                 <label for="pontos">Valor</label>
                                 <input type="text" class="form-control" id="txtValor" name="txtValor">
                             </div>
-                        </div>
-                        <div class="form-row row">
                             <div class="form-group col-md-1 botao-salvar-tarefa">
                                 <input type="submit" class="btn btn-success" value="Salvar" />
                             </div>
@@ -97,18 +103,22 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                     </form>
                 </div>
                 <div class="container-fluid border" id="update" style="display:none">
-                    <form class="cadastro-form" method="POST" action="../controller/AtualizaRecompensaController.php">
+                    <form class="cadastro-form" method="POST" action="../controller/AtualizaTituloController.php">
                         <div class="form-row row">
-                            <div class="form-group col-md-9">
+                            <div class="form-group col-md-4">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control" id="txtNomeUpdate" name="txtNomeUpdate">
+                            </div>
+                            <div class="form-group col-md-8">
                                 <label for="pontos">Descrição</label>
                                 <input type="text" class="form-control" id="txtDescricaoUpdate" name="txtDescricaoUpdate">
                             </div>
+                        </div>
+                        <div class="form-row row">
                             <div class="form-group col-md-3">
                                 <label for="pontos">Valor</label>
                                 <input type="text" class="form-control" id="txtValorUpdate" name="txtValorUpdate">
                             </div>
-                        </div>
-                        <div class="form-row row">
                             <div class="form-group col-md-2">
                                 <label for="idEdit">ID selecionado: </label>
                                 <input type="text" class="form-control" id="txtIdEdit" name="txtIdEdit" readonly>
@@ -117,7 +127,7 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                                 <input type="submit" class="btn btn-success" value="Salvar" />
                             </div>
                             <div class="form-group col-md-1 botao-cancelar-tarefa">
-                                <input type="button" class="btn btn-danger" value="Cancelar" onclick="botaoCancelarRecompensa()" />
+                                <input type="button" class="btn btn-danger" value="Cancelar" onclick="botaoCancelarTitulo()" />
                             </div>
                         </div>
                     </form>
@@ -127,7 +137,8 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../scripts/CadastroRecompensa.js"></script>
+
+    <script type="text/javascript" src="../scripts/CadastroTitulo.js"></script>
 </body>
 
 </html>

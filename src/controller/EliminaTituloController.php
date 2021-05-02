@@ -6,19 +6,14 @@ use greenbook\repository\TituloRepository;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-$descricao = @$_POST["txtDescricao"];
-$valor = @$_POST["txtValor"];
-//$diponivelParaCompra = @$_GET["txtDiponivelParaCompra"];
-$nome = @$_POST["txtNome"];
-
-$titulo = new Titulo($descricao, $valor, false, $nome);
+$id = key($_POST['clicked']);
 
 $entityManagerFactory = new EntityManagerFactory();
 $entityManager = $entityManagerFactory->getEntityManager();
 $repository = $entityManager->getRepository(Titulo::class);
 $repository = repositoryClass($repository);
 
-$result = $repository->save($titulo);
+$result =  $repository->delete($id); 
 
 function repositoryClass($myClass): TituloRepository
 {
