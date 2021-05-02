@@ -2,7 +2,7 @@
 require_once("header.php");
 session_start();
 $_nomeUsuario = @$_SESSION["nome_usuario"];
-$_idUsuario = $_SESSION["id_usuario"]
+$_idUsuario = @$_SESSION["id_usuario"]
 ?>
 
 <header>

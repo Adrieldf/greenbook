@@ -72,7 +72,6 @@ class Usuario extends Cadastravel
 
     public function __construct()
     {
-
     }
 
     public function fromCPF(string $nome, string $apelido, string $cpf): Usuario
@@ -85,7 +84,6 @@ class Usuario extends Cadastravel
         $usuario->pontuacaoGeral = 0;
         $this->titulos = new ArrayCollection();
         $this->tarefas = new ArrayCollection();
-
         return $usuario;
     }
 
@@ -99,7 +97,6 @@ class Usuario extends Cadastravel
         $usuario->pontuacaoGeral = 0;
         $this->titulos = new ArrayCollection();
         $this->tarefas = new ArrayCollection();
-
         return $usuario;
     }
 
@@ -218,7 +215,6 @@ class Usuario extends Cadastravel
         $this->tarefas = $tarefas;
     }
 
-    
     public function getDescricao(): string
     {
         return $this->descricao;
@@ -228,6 +224,7 @@ class Usuario extends Cadastravel
     {
         $this->descricao = $descricao;
     }
+
     public function getCep(): string
     {
         return $this->cep;
@@ -237,6 +234,7 @@ class Usuario extends Cadastravel
     {
         $this->cep = $cep;
     }
+
     public function getRua(): string
     {
         return $this->rua;
@@ -246,6 +244,7 @@ class Usuario extends Cadastravel
     {
         $this->rua = $rua;
     }
+
     public function getComplemento(): string
     {
         return $this->complemento;
@@ -255,6 +254,7 @@ class Usuario extends Cadastravel
     {
         $this->complemento = $complemento;
     }
+
     public function getNumero(): string
     {
         return $this->numero;
@@ -264,6 +264,7 @@ class Usuario extends Cadastravel
     {
         $this->numero = $numero;
     }
+
     public function getBairro(): string
     {
         return $this->bairro;
@@ -273,6 +274,7 @@ class Usuario extends Cadastravel
     {
         $this->bairro = $bairro;
     }
+
     public function getCidade(): string
     {
         return $this->cidade;
@@ -282,6 +284,7 @@ class Usuario extends Cadastravel
     {
         $this->cidade = $cidade;
     }
+
     public function getEstado(): string
     {
         return $this->estado;
@@ -291,6 +294,7 @@ class Usuario extends Cadastravel
     {
         $this->estado = $estado;
     }
+
     public function getPais(): string
     {
         return $this->pais;
