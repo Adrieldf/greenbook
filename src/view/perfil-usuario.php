@@ -2,6 +2,10 @@
 
 namespace greenbook\view;
 
+use greenbook\helper\EntityManagerFactory;
+use greenbook\model\Usuario;
+use greenbook\repository\UsuarioRepository;
+
 require_once __DIR__ . '\..\controller\MainController.php';
 require_once __DIR__ . '\..\..\vendor\autoload.php';
 require_once("header.php");
@@ -11,8 +15,57 @@ require_once("header.php");
 
 <?php
 include("header.php");
-
 include("navbar.php");
+?>
+
+<?php
+$idUsuario = @$_GET["id"];
+$id = "";
+$nome = "";
+$email = "";
+$senha = "";
+$telefone = "";
+$cep = "";
+$rua = "";
+$numero = "";
+$complemento = "";
+$bairro = "";
+$cidade = "";
+$estado = "";
+
+if (!is_null($idUsuario)) {
+
+    $factory = new EntityManagerFactory();
+    $repository = $factory->getEntityManager()->getRepository(Usuario::class);
+    $repository = repositoryClass($repository);
+    $usuario = $repository->findById($idUsuario);
+
+    if (!is_null($usuario) && $usuario->getId() == $idUsuario) {
+       $nome = $usuario->getNome();
+
+    }
+    /* $pgDaoFactory = new PgDaoFactory();
+    $dao = $pgDaoFactory->getClienteDao();
+    $cliente = $dao->getOneById($idCliente);
+    if (is_null($cliente)) {
+        echo "<script type='javascript'>alert('Erro ao carregar dados do cliente!');";
+        header("Location: ../view/index.php");
+        exit;
+    }
+
+    $id = $cliente->getId();
+    $nome = $cliente->getNome();
+    $email = $cliente->getEmail();
+    $senha = $cliente->getSenha();
+    $telefone = $cliente->getTelefone();
+    $cep = $cliente->getEndereco()->getCep();
+    $rua = $cliente->getEndereco()->getRua();
+    $numero = $cliente->getEndereco()->getNumero();
+    $complemento = $cliente->getEndereco()->getComplemento();
+    $bairro = $cliente->getEndereco()->getBairro();
+    $cidade = $cliente->getEndereco()->getCidade();
+    $estado = $cliente->getEndereco()->getEstado();*/
+}
 ?>
 
 <body>
@@ -22,7 +75,7 @@ include("navbar.php");
             <div class="row">
                 <h4>Dados</h4>
                 <div class="col-md-4">
-                    <img class="perfil-usuario-imagem" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh3sMJVjn4X-HocVUO5GcSBbpctWhzhpCU4Q&usqp=CAU" alt="Girl in a jacket">
+                    <img class="perfil-usuario-imagem" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh3sMJVjn4X-HocVUO5GcSBbpctWhzhpCU4Q&usqp=CAU">
                     <h5 class="perfil-usuario-titulo">Título</h5>
                 </div>
                 <div class="col-md-8">
@@ -30,7 +83,7 @@ include("navbar.php");
                         <form id="form">
                             <div class="form-group">
                                 <label for="nome">Nome</label>
-                                <input type="text" class="form-control" id="nome" placeholder="">
+                                <input type="text" class="form-control" id="nome" name="nome" value="<?= $nome ?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -107,6 +160,14 @@ include("navbar.php");
             </form>
         </div>
     </div>
+    
+    <script type="text/javascript" src="../scripts/PerfilUsuario.js"></script>
 </body>
 
 </html>
+<?php
+function repositoryClass($myClass): UsuarioRepository
+{
+    return $myClass;
+}
+?>
