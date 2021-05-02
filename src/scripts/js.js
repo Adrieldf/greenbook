@@ -28,3 +28,7 @@ function botaoCancelarTipoTarefa() {
         // x.style.display = "none";
     }
 }
+/******************************************************/
+function botaoEditarTarefa(desc, nomeTipoTarefa,pontos,moedas,id) {
+
+}

@@ -57,7 +57,7 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
                                         echo '<tr>';
                                         echo '<td class="cadastro-tipotarefa-tabela-col1">';
                                         echo '<input type="submit" onclick="botaoEditarTipoTarefa(
-                                    \'' . $linha->getNome() . '\',' . $linha->getID() . ')" name="edit" value="Editar"/>';
+                                        \'' . $linha->getNome() . '\',' . $linha->getID() . ')" name="edit" value="Editar"/>';
                                         echo '</td>';
                                         echo '<td class="cadastro-tipotarefa-tabela-col1">' . $linha->getID() . '</td>';
                                         echo '<td class="cadastro-tipotarefa-tabela-col1">' . $linha->getNome() . '</td>';
