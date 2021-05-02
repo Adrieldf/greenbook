@@ -42,6 +42,34 @@ class Usuario extends Cadastravel
     /** @OneToMany(targetEntity="TarefaUsuario", mappedBy="usuario", cascade="all") */
     private Collection $tarefas;
 
+    /** @Column(type="string", nullable=true) */
+    private string $descricao;
+
+    /** @Column(type="string", nullable=true) */
+    private string $cep;
+
+    /** @Column(type="string", nullable=true) */
+    private string $rua;
+
+    /** @Column(type="string", nullable=true) */
+    private string $complemento;
+
+    /** @Column(type="string", nullable=true) */
+    private string $numero;
+
+    /** @Column(type="string", nullable=true) */
+    private string $bairro;
+
+    /** @Column(type="string", nullable=true) */
+    private string $cidade;
+
+    /** @Column(type="string", nullable=true) */
+    private string $estado;
+
+    /** @Column(type="string", nullable=true) */
+    private string $pais;
+
+
     public function __construct()
     {
 
@@ -188,5 +216,88 @@ class Usuario extends Cadastravel
     public function setTarefas(ArrayCollection $tarefas): void
     {
         $this->tarefas = $tarefas;
+    }
+
+    
+    public function getDescricao(): string
+    {
+        return $this->descricao;
+    }
+
+    public function setDescricao(string $descricao): void
+    {
+        $this->descricao = $descricao;
+    }
+    public function getCep(): string
+    {
+        return $this->cep;
+    }
+
+    public function setCep(string $cep): void
+    {
+        $this->cep = $cep;
+    }
+    public function getRua(): string
+    {
+        return $this->rua;
+    }
+
+    public function setRua(string $rua): void
+    {
+        $this->rua = $rua;
+    }
+    public function getComplemento(): string
+    {
+        return $this->complemento;
+    }
+
+    public function setComplemento(string $complemento): void
+    {
+        $this->complemento = $complemento;
+    }
+    public function getNumero(): string
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(string $numero): void
+    {
+        $this->numero = $numero;
+    }
+    public function getBairro(): string
+    {
+        return $this->bairro;
+    }
+
+    public function setBairro(string $bairro): void
+    {
+        $this->bairro = $bairro;
+    }
+    public function getCidade(): string
+    {
+        return $this->cidade;
+    }
+
+    public function setCidade(string $cidade): void
+    {
+        $this->cidade = $cidade;
+    }
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(string $estado): void
+    {
+        $this->estado = $estado;
+    }
+    public function getPais(): string
+    {
+        return $this->pais;
+    }
+
+    public function setPais(string $pais): void
+    {
+        $this->pais = $pais;
     }
 }

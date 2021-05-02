@@ -41,9 +41,10 @@ if (!is_null($idUsuario)) {
     $usuario = $repository->findById($idUsuario);
 
     if (!is_null($usuario) && $usuario->getId() == $idUsuario) {
-       $nome = $usuario->getNome();
-
-    }
+        $nome = $usuario->getNome();
+        $email = $usuario->getEmail();
+        
+        }
     /* $pgDaoFactory = new PgDaoFactory();
     $dao = $pgDaoFactory->getClienteDao();
     $cliente = $dao->getOneById($idCliente);
