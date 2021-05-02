@@ -1,4 +1,4 @@
-function botaoEditarTipoTarefa(nome, id) {
+function botaoEditarRecompensa(desc, id, valor) {
     var x = document.getElementById("update");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -9,12 +9,12 @@ function botaoEditarTipoTarefa(nome, id) {
     } else {
         x.style.display = "none";
     }
-    document.getElementById('txtTarefaUpdate').value = nome;
+    document.getElementById('txtDescricaoUpdate').value = desc;
+    document.getElementById('txtValorUpdate').value = valor;
     document.getElementById('txtIdEdit').value = id;
-
 }
 
-function botaoCancelarTipoTarefa() {
+function botaoCancelarRecompensa() {
     var x = document.getElementById("update");
     if (x.style.display === "none") {
         //x.style.display = "block";
@@ -27,8 +27,4 @@ function botaoCancelarTipoTarefa() {
     } else {
         // x.style.display = "none";
     }
-}
-/******************************************************/
-function botaoEditarTarefa(desc, nomeTipoTarefa,pontos,moedas,id) {
-
 }

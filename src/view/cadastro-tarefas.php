@@ -32,7 +32,7 @@ $tarefaRepository = tarefaRepositoryClass($tarefaRepository);
 
 $tarefas = $tarefaRepository->findAll();
 
-function tarefaRepositoryClass($myClass): TarefaRepository //so troquei o nome pra min não me confundir
+function tarefaRepositoryClass($myClass): TarefaRepository
 {
     return $myClass;
 }
@@ -73,11 +73,11 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
                                         echo '<td class="cadastro-tarefa-tabela-col1">';
                                         echo '<input type="submit" onclick="botaoEditarTarefa(
                                             \'' . $linha->getDescricao() . '\',\'' . $linha->getTipoDeTarefa()->getNome() . '\',' . $linha->getValorEmPontos()
-                                            . ',' . $linha->getValorEmMoedas() . ','. $linha->getId()
+                                            . ',' . $linha->getValorEmMoedas() . ',' . $linha->getId()
                                             . ')" name="edit" value="Editar"/>';
                                         echo '</td>';
                                         echo '<td class="cadastro-tarefa-tabela-col2">' . $linha->getID() . '</td>';
-                                        echo '<td class="cadastro-produtos-tabela-col3">' . $linha->getTipoDeTarefa()->getNome() . '</td>';
+                                        echo '<td class="cadastro-tarefa-tabela-col3">' . $linha->getTipoDeTarefa()->getNome() . '</td>';
                                         echo '<td class="cadastro-tarefa-tabela-col4">' . $linha->getValorEmPontos() . '</td>';
                                         echo '<td class="cadastro-tarefa-tabela-col5">' . $linha->getValorEmMoedas() . '</td>';
                                         echo '<form method="post" action="../controller/EliminaTarefaController.php">';
@@ -93,7 +93,7 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid border">
+                <div class="container-fluid border" id="insert">
                     <form class="cadastro-form" method="POST" action="../controller/CadastroTarefaController.php">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Descrição da tarefa</label>
@@ -124,11 +124,50 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
                         </div>
                     </form>
                 </div>
+                <div class="container-fluid border" id="update" style="display:none">
+                    <form class="cadastro-form" method="POST" action="../controller/AtualizaTarefaController.php">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Descrição da tarefa</label>
+                            <textarea class="form-control" id="txtTarefaUpdate" name="txtTarefaUpdate" rows="2"></textarea>
+                        </div>
+                        <div class="form-row row">
+                            <div class="form-group col-md-3">
+                                <label for="tipo">Tipo de tarefa</label>
+                                <select id="txtTipoTarefaUpdate" name="txtTipoTarefaUpdate" class="form-control">
+                                    <?php
+                                    foreach ($tiposTarefas as $linha) {
+                                        echo '<option>' . $linha->getNome() . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="pontos">Pontos</label>
+                                <input type="text" class="form-control" id="txtPontosUpdate" name="txtPontosUpdate">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="moedas">Moedas</label>
+                                <input type="text" class="form-control" id="txtMoedasUpdate" name="txtMoedasUpdate">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="idEdit">ID selecionado: </label>
+                                <input type="text" class="form-control" id="txtIdEdit" name="txtIdEdit" readonly>
+                            </div>
+                            <div class="form-group col-md-1 botao-salvar-tarefa">
+                                <input type="submit" class="btn btn-success" value="Salvar" />
+                            </div>
+                            <div class="form-group col-md-1 botao-cancelar-tarefa">
+                                <input type="button" class="btn btn-danger" value="Cancelar" onclick="botaoCancelarTarefa()" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-md-2">
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="../scripts/CadastroTarefas.js"></script>
 </body>
 
 </html>

@@ -22,7 +22,6 @@ require_once("../controller/MainController.php");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../scripts/jquery-3.6.0.min.js"></script>
     <script src="../scripts/jquery.mask.min.js"></script>
-    <script type="text/javascript" src="../scripts/js.js"></script>
     <script src="https://kit.fontawesome.com/0a9fee0074.js" crossorigin="anonymous"></script>
     <title>
         <?= $title ?>

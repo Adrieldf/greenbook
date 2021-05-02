@@ -112,6 +112,7 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="../scripts/CadastroTipoDeTarefa.js"></script>
 </body>
 
 </html>
