@@ -4,6 +4,15 @@ namespace greenbook\view;
 
 require_once __DIR__ . '\..\controller\MainController.php';
 require_once __DIR__ . '\..\..\vendor\autoload.php';
+
+use greenbook\helper\EntityManagerFactory;
+use greenbook\model\Tarefa;
+use greenbook\model\TipoDeTarefa;
+use greenbook\model\Titulo;
+use greenbook\repository\TituloRepository;
+use greenbook\repository\TipoDeTarefaRepository;
+use greenbook\repository\TarefaRepository;
+
 require_once("header.php");
 ?>
 <!DOCTYPE html>
@@ -11,8 +20,39 @@ require_once("header.php");
 
 <?php
 include("header.php");
-
 include("navbar.php");
+$factory = new EntityManagerFactory();
+$entityManager = $factory->getEntityManager();
+
+$tipoRepository = $entityManager->getRepository(TipoDeTarefa::class);
+$tipoRepository = tipoRepositoryClass($tipoRepository);
+
+$tiposTarefas = $tipoRepository->findAll();
+
+$tarefaRepository = $entityManager->getRepository(Tarefa::class);
+$tarefaRepository = tarefaRepositoryClass($tarefaRepository);
+
+$tarefas = $tarefaRepository->findAll();
+
+$tituloRepository = $entityManager->getRepository(Titulo::class);
+$tituloRepository = tituloRepositoryClass($tituloRepository);
+
+$titulos = $tituloRepository->findAll();
+
+function tarefaRepositoryClass($myClass): TarefaRepository
+{
+    return $myClass;
+}
+function tipoRepositoryClass($myClass): TipoDeTarefaRepository
+{
+    return $myClass;
+}
+
+function tituloRepositoryClass($myClass): TituloRepository
+{
+    return $myClass;
+}
+
 ?>
 
 <body>
@@ -25,31 +65,75 @@ include("navbar.php");
                         <a class="nav-link active" data-toggle="tab" href="#home">Tarefas</a>
                     </li>
                     <li class="nav-item usuario-tab">
-                        <a class="nav-link" data-toggle="tab" href="#menu1">Títulos</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu1">Tarefas não con.</a>
                     </li>
                     <li class="nav-item usuario-tab">
-                        <a class="nav-link" data-toggle="tab" href="#menu2">Loja</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu2">Títulos</a>
                     </li>
                     <li class="nav-item usuario-tab">
-                        <a class="nav-link" data-toggle="tab" href="#menu3">Ranking</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu3">Loja</a>
+                    </li>
+                    <li class="nav-item usuario-tab">
+                        <a class="nav-link" data-toggle="tab" href="#menu4">Ranking</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
-                        <h3>HOME</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <?php
+                        foreach ($tarefas as $linha) {
+                            echo '<div class="container-fluid p-3 my-3 border tarefa">';
+                            echo '<div class="row">';
+                            echo '<div class="col-md-4"><h6>Tipo: ' . $linha->getTipoDeTarefa()->getNome() . '</h6></div>';
+                            echo '<div class="col-md-4"><h6>Moedas: ' . $linha->getValorEmMoedas() . '</h6></div>';
+                            echo '<div class="col-md-4"><h6>Pontos: ' . $linha->getValorEmPontos() . '</h6></div>';
+                            echo '</div>';
+                            echo '<h6 class="tarefaTexto">' . $linha->getDescricao() . '</h6>';
+                            echo '</div>';
+                        }
+                        ?>
                     </div>
                     <div id="menu1" class="container tab-pane fade"><br>
-                        <h3>Menu 1</h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
+                        <?php
+                        foreach ($tarefas as $linha) {
+                            echo '<div class="container-fluid p-3 my-3 border tarefa">';
+                            echo '<div class="row">';
+                            echo '<div class="col-md-4"><h6>Tipo: ' . $linha->getTipoDeTarefa()->getNome() . '</h6></div>';
+                            echo '<div class="col-md-4"><h6>Moedas: ' . $linha->getValorEmMoedas() . '</h6></div>';
+                            echo '<div class="col-md-4"><h6>Pontos: ' . $linha->getValorEmPontos() . '</h6></div>';
+                            echo '</div>';
+                            echo '<h6 class="tarefaTexto">' . $linha->getDescricao() . '</h6>';
+                            echo '</div>';
+                        }
+                        ?></div>
                     <div id="menu2" class="container tab-pane fade"><br>
-                        <h3>Menu 2</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="titulo-col1" scope="col">Valor</th>
+                                    <th class="titulo-col2" scope="col">Nome</th>
+                                    <th class="titulo-col3" scope="col">Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach($titulos as $linha){
+                                        echo '<tr>';
+                                        echo '<th class="titulo-col1">'.$linha->getValor().'</th>';
+                                        echo '<th class="titulo-col2">'.$linha->getNome().'</th>';
+                                        echo '<th class="titulo-col3">'.$linha->getDescricao().'</th>';
+                                        echo '</tr>';        
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                     <div id="menu3" class="container tab-pane fade"><br>
-                        <h3>Menu 2</h3>
+                        <h3>Menu 3</h3>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                    </div>
+                    <div id="menu4" class="container tab-pane fade"><br>
+                        <h3>Menu 4</h3>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
                     </div>
                 </div>

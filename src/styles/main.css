@@ -202,3 +202,26 @@
 .cadastro-titulo-tabela-col6{
   width: 10%;
 }
+
+.tarefa{
+  min-height: 150px ;
+  background-color:#bff5bf;
+  margin:auto;
+  text-align:center;
+}
+
+.tarefaTexto{
+  margin-top: 5%;
+}
+
+.titulo-col1{
+  width: 15%;
+}
+
+.titulo-col2{
+  width: 25%;
+}
+
+.titulo-col3{
+  width: 60%;
+}
