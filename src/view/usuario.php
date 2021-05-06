@@ -10,6 +10,8 @@ use greenbook\model\Tarefa;
 use greenbook\model\TipoDeTarefa;
 use greenbook\model\Titulo;
 use greenbook\model\Recompensa;
+use greenbook\model\Usuario;
+use greenbook\repository\UsuarioRepository;
 use greenbook\repository\RecompensaRepository;
 use greenbook\repository\TituloRepository;
 use greenbook\repository\TipoDeTarefaRepository;
@@ -46,6 +48,10 @@ $recompensaRepository = recompensaRepositoryClass($recompensaRepository);
 
 $recompensas = $recompensaRepository->findAll();
 
+$usuarioRepository = $entityManager->getRepository(Usuario::class);
+$usuarioRepository = usuarioRepositoryClass($usuarioRepository);
+
+$usuarios = $usuarioRepository->findAll();
 
 function tarefaRepositoryClass($myClass): TarefaRepository
 {
@@ -66,6 +72,10 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
     return $myClass;
 }
 
+function usuarioRepositoryClass($myClass): UsuarioRepository
+{
+    return $myClass;
+}
 
 ?>
 
@@ -144,14 +154,14 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                     </div>
                     <div id="menu3" class="container tab-pane fade"><br>
                         <?php
-                        
+
                         foreach ($recompensas as $linha) {
                             echo '<div class="container-fluid p-3 my-3 border loja">';
                             echo '<div class="row">';
                             echo '<div class="col-md-4" style="word-wrap:break-word;">' . $linha->getDescricao() . '</div>';
                             echo '<div class="col-md-5">Imagem</div>';
                             echo '<div class="col-md-3" style="height: 100%">';
-                            echo '<div class="loja-valor">Valor: '. $linha->getValor() .'</div>';
+                            echo '<div class="loja-valor">Valor: ' . $linha->getValor() . '</div>';
                             echo '<div class="loja-comprar"><input class="loja-botao-comprar" type="submit" name="clicked" value="Comprar"/></div>';
                             echo '</div>';
                             echo '</div>';
@@ -160,8 +170,24 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                         ?>
                     </div>
                     <div id="menu4" class="container tab-pane fade"><br>
-                        <h3>Menu 4</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Pontos</th>
+                                    <th scope="col">Nome</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($usuarios as $linha) {
+                                    echo '<tr>';
+                                    echo '<th>' . $linha->getPontuacaoGeral() . '</th>';
+                                    echo '<th>' . $linha->getNome() . '</th>';
+                                    echo '</tr>';
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
