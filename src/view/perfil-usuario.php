@@ -66,7 +66,7 @@ if (!is_null($idUsuario)) {
         <div class="container-fluid p-3 my-3 border">
             <h3>Perfil</h3>
             <div class="container-fluid ">
-                <form id="form" action="../controller/AtualizaPerfilUsuarioController.php" method="POST">
+                <form id="form" action="../controller/AtualizaPerfilUsuarioController.php" onsubmit="return validateForm()" method="POST">
                     <div class="row">
                         <h4>Dados</h4>
                         <div class="col-md-4">

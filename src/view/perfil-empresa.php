@@ -50,7 +50,7 @@ if (!is_null($idEmpresa)) {
         <div class="container-fluid p-3 my-3 border">
             <h3>Dados da empresa</h3>
             <div class="container-fluid ">
-                <form id="form" action="../controller/AtualizaPerfilEmpresaController.php" method="POST">
+                <form id="form" action="../controller/AtualizaPerfilEmpresaController.php" onsubmit="return validateForm()" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <input type="hidden" id="idEmpresa" name="idEmpresa" value="<?= $idEmpresa ?>">

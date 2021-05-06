@@ -21,6 +21,7 @@ $cidade = @$_POST["txtCidade"];
 $pais = @$_POST["txtPais"];
 $estado = @$_POST["cboEstado"];
 $senhaAntiga = @$_POST["senhaAntiga"];
+$repitaSenha = @$_POST["txtRepitaSenha"];
 
 $factory = new EntityManagerFactory();
 $repository = $factory->getEntityManager()->getRepository(Usuario::class);
@@ -30,7 +31,7 @@ $usuario = $repository->findById($id);
 
 $usuario->setNome($nome);
 $usuario->setEmail($email);
-$usuario->setSenha($senhaAntiga); //ver se trocou a senha pelo botao lá
+$usuario->setSenha(is_null($repitaSenha) || $repitaSenha == "" ? $senhaAntiga : $senha);
 $usuario->setDescricao($descricao);
 $usuario->setCep($cep);
 $usuario->setRua($rua);

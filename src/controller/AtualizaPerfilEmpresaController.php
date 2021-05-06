@@ -12,7 +12,7 @@ $razao = @$_POST["txtRazao"];
 $fantasia = @$_POST["txtFantasia"];
 $email = @$_POST["txtEmail"];
 $senha = @$_POST["txtSenha"];
-
+$repitaSenha = @$_POST["txtRepitaSenha"];
 $senhaAntiga = @$_POST["senhaAntiga"];
 
 $factory = new EntityManagerFactory();
@@ -24,7 +24,7 @@ $empresa = $repository->findById($id);
 $empresa->setRazaoSocial($razao);
 $empresa->setNomeFantasia($fantasia);
 $empresa->setEmail($email);
-$empresa->setSenha($senhaAntiga); //ver se trocou a senha pelo botao lá
+$empresa->setSenha(is_null($repitaSenha) || $repitaSenha == "" ? $senhaAntiga : $senha);
 
 
 $result =  $repository->save($empresa); 
