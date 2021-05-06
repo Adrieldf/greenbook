@@ -16,7 +16,7 @@ include("navbar.php");
                 <div class="card-body">
                     <h5 class="card-title">Seja bem-vinda(o)!</h5>
                     <br />
-                    <form action="../controller/SignupController.php" method="get">
+                    <form action="../controller/SignupController.php" onsubmit="return validateForm()" method="get">
                         <div class="mb-3">
                             <label for="txtNomeCompleto" class="form-label">Nome completo</label>
                             <input type="text" class="form-control" name="txtNomeCompleto" aria-describedby="emailHelp">
