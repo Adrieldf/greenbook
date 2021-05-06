@@ -22,7 +22,7 @@ $entityManager = $factory->getEntityManager();
 $recompensaRepository = $entityManager->getRepository(Recompensa::class);
 $recompensaRepository = recompensaRepositoryClass($recompensaRepository);
 
-$tiposTarefas = $recompensaRepository->findAll();
+$recompensas = $recompensaRepository->findAll();
 
 function recompensaRepositoryClass($myClass): RecompensaRepository
 {
@@ -54,7 +54,7 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                             <table class="table table-hover table-striped table-bordered table-condensed">
                                 <tbody>
                                     <?php
-                                    foreach ($tiposTarefas as $linha) {
+                                    foreach ($recompensas as $linha) {
                                         echo '<tr>';
                                         echo '<td class="cadastro-recompensa-tabela-col1">';
                                         echo '<input type="submit" onclick="botaoEditarRecompensa(

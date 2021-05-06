@@ -9,6 +9,8 @@ use greenbook\helper\EntityManagerFactory;
 use greenbook\model\Tarefa;
 use greenbook\model\TipoDeTarefa;
 use greenbook\model\Titulo;
+use greenbook\model\Recompensa;
+use greenbook\repository\RecompensaRepository;
 use greenbook\repository\TituloRepository;
 use greenbook\repository\TipoDeTarefaRepository;
 use greenbook\repository\TarefaRepository;
@@ -39,6 +41,12 @@ $tituloRepository = tituloRepositoryClass($tituloRepository);
 
 $titulos = $tituloRepository->findAll();
 
+$recompensaRepository = $entityManager->getRepository(Recompensa::class);
+$recompensaRepository = recompensaRepositoryClass($recompensaRepository);
+
+$recompensas = $recompensaRepository->findAll();
+
+
 function tarefaRepositoryClass($myClass): TarefaRepository
 {
     return $myClass;
@@ -52,6 +60,12 @@ function tituloRepositoryClass($myClass): TituloRepository
 {
     return $myClass;
 }
+
+function recompensaRepositoryClass($myClass): RecompensaRepository
+{
+    return $myClass;
+}
+
 
 ?>
 
@@ -117,20 +131,33 @@ function tituloRepositoryClass($myClass): TituloRepository
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach($titulos as $linha){
-                                        echo '<tr>';
-                                        echo '<th class="titulo-col1">'.$linha->getValor().'</th>';
-                                        echo '<th class="titulo-col2">'.$linha->getNome().'</th>';
-                                        echo '<th class="titulo-col3">'.$linha->getDescricao().'</th>';
-                                        echo '</tr>';        
-                                    }
+                                foreach ($titulos as $linha) {
+                                    echo '<tr>';
+                                    echo '<th class="titulo-col1">' . $linha->getValor() . '</th>';
+                                    echo '<th class="titulo-col2">' . $linha->getNome() . '</th>';
+                                    echo '<th class="titulo-col3">' . $linha->getDescricao() . '</th>';
+                                    echo '</tr>';
+                                }
                                 ?>
                             </tbody>
                         </table>
                     </div>
                     <div id="menu3" class="container tab-pane fade"><br>
-                        <h3>Menu 3</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        <?php
+                        
+                        foreach ($recompensas as $linha) {
+                            echo '<div class="container-fluid p-3 my-3 border loja">';
+                            echo '<div class="row">';
+                            echo '<div class="col-md-4" style="word-wrap:break-word;">' . $linha->getDescricao() . '</div>';
+                            echo '<div class="col-md-5">Imagem</div>';
+                            echo '<div class="col-md-3" style="height: 100%">';
+                            echo '<div class="loja-valor">Valor: '. $linha->getValor() .'</div>';
+                            echo '<div class="loja-comprar"><input class="loja-botao-comprar" type="submit" name="clicked" value="Comprar"/></div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                        ?>
                     </div>
                     <div id="menu4" class="container tab-pane fade"><br>
                         <h3>Menu 4</h3>

@@ -210,6 +210,26 @@
   text-align:center;
 }
 
+.loja{
+  min-height: 150px ;
+  background-color:#bff5bf;
+  margin:auto;
+  text-align:center;
+}
+
+
+.loja-valor{
+  min-height: 50px ;
+}
+
+.loja-comprar{
+  min-height: 50px ;
+}
+
+.loja-botao-comprar{
+  margin-top: 5%;
+}
+
 .tarefaTexto{
   margin-top: 5%;
 }
