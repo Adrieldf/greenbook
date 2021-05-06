@@ -217,7 +217,7 @@ class Usuario extends Cadastravel
 
     public function getDescricao(): string
     {
-        return $this->descricao;
+        return $this->descricao ?? "";
     }
 
     public function setDescricao(string $descricao): void
