@@ -30,8 +30,6 @@ $(document).ready(function () {
 });
 
 function editFields(enable) {
-    console.log(enable);
-
     if (enable) {
         $("#txtNome").removeAttr("disabled");
         $("#txtEmail").removeAttr("disabled");

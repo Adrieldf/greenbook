@@ -14,16 +14,20 @@ include("navbar.php");
             <div class="col-md-4"></div>
             <div class="card col-md-4">
                 <div class="card-body">
-                    <h5 class="card-title">Seja bem-vinda(o)!</h5>
+                    <h5 class="card-title">Cadastre sua empresa!</h5>
                     <br />
-                    <form action="../controller/SignupController.php" method="get">
+                    <form action="../controller/CadastroEmpresaController.php" method="get">
                         <div class="mb-3">
-                            <label for="txtNomeCompleto" class="form-label">Nome completo</label>
-                            <input type="text" class="form-control" name="txtNomeCompleto" aria-describedby="emailHelp">
+                            <label for="txtRazao" class="form-label">Razão Social</label>
+                            <input type="text" class="form-control" name="txtRazao">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtFantasia" class="form-label">Nome Fantasia</label>
+                            <input type="text" class="form-control" name="txtFantasia">
                         </div>
                         <div class="mb-3">
                             <label for="txtEmail" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" name="txtEmail" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" name="txtEmail">
                         </div>
                         <div class="mb-3">
                             <label for="txtSenha" class="form-label">Senha</label>
@@ -35,7 +39,7 @@ include("navbar.php");
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary bg-green">Criar conta</button>
-                        <a id="btnCadastrarEmpresa" class="btn btn-primary icon-button btn-inverted" onclick="window.location.href='cadastro-empresa.php';">Cadastrar empresa</a>
+                        <a id="btnCadastrarUsuario" class="btn btn-primary icon-button btn-inverted" onclick="window.location.href='signup.php';">Cadastrar pessoa física</a>
 
                     </form>
                 </div>

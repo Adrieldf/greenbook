@@ -2,8 +2,10 @@
 <?php
 
 use greenbook\helper\EntityManagerFactory;
-use greenbook\model\Empresa;
 use greenbook\model\Usuario;
+use greenbook\repository\UsuarioRepository;
+use greenbook\model\Empresa;
+use greenbook\repository\EmpresaRepository;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -20,14 +22,14 @@ if (!$login || !$senha) {
 $entityManagerFactory = new EntityManagerFactory();
 $entityManager = $entityManagerFactory->getEntityManager();
 $objectRepository = $entityManager->getRepository(Usuario::class);
+$objectRepository = usuarioRepositoryClass($objectRepository);
 $usuario = $objectRepository->findOneBy(array('email' => $login));
 
 $problemas = FALSE;
 if ($usuario) {
     if (strcmp($senha, $usuario->getSenha())) {
-        $_SESSION["id_usuario"] = $usuario->getId();
-        $_SESSION["nome_usuario"] = stripslashes($usuario->getNome());
-        //$_SESSION["permissao"]= $dados["postar"]; 
+        preencheSessoes($usuario->getId(), $usuario->getNome(), false);
+
         echo "<script> console.log('Login feito com sucesso! Usuario: ' " .  $_SESSION['nome_usuario'] . " </script>";
         header("Location: ../view/perfil-usuario.php?id=" . $usuario->getId());
         exit;
@@ -35,13 +37,39 @@ if ($usuario) {
         $problemas = TRUE;
     }
 } else {
+    $repository = $entityManager->getRepository(Empresa::class);
+    $repository = empresaRepositoryClass($repository);
+    $empresa = $repository->findOneBy(array('email' => $login));
+    if($empresa){
+        if (strcmp($senha, $empresa->getSenha())) {
+            preencheSessoes($empresa->getId(),$empresa->getNomeFantasia(), true );
+            header("Location: ../view/perfil-empresa.php?id=" . $empresa->getId());
+            exit;
+        }
+    }
+
+
     $problemas = TRUE;
 }
 
 if ($problemas == TRUE) {
-    echo "Problema ao fazer login, tente de novo!";
-    echo "<script> console.log('Problema ao fazer login! Usuario: ' " .  $_SESSION['nome_usuario'] . " </script>";
+    //echo "Problema ao fazer login, tente de novo!";
+    // echo "<script> console.log('Problema ao fazer login!') </script>";
     header("Location: ../view/login.php");
     exit;
+}
+
+function preencheSessoes($id, $nome, $empresa){
+    $_SESSION["id_usuario"] = $id;
+    $_SESSION["nome_usuario"] = stripslashes($nome);
+    $_SESSION["empresa"] = $empresa;
+}
+function usuarioRepositoryClass($myClass): UsuarioRepository
+{
+    return $myClass;
+}
+function empresaRepositoryClass($myClass): EmpresaRepository
+{
+    return $myClass;
 }
 ?>

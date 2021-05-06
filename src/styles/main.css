@@ -273,6 +273,17 @@
   background-color: var(--darker-green);
   border-color: var(--darker-green);
 }
+.btn-inverted {
+  color: var(--dark-green);
+  background-color: #fff;
+  border-color: var(--dark-green);
+}
+
+.btn-inverted:hover {
+  color: #fff;
+  background-color: var(--darker-green);
+  border-color: var(--darker-green);
+}
 
 .perfil-usuario-imagem {
   width: 200px;
