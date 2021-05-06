@@ -227,7 +227,7 @@ class Usuario extends Cadastravel
 
     public function getCep(): string
     {
-        return $this->cep;
+        return $this->cep ?? "";
     }
 
     public function setCep(string $cep): void
@@ -237,7 +237,7 @@ class Usuario extends Cadastravel
 
     public function getRua(): string
     {
-        return $this->rua;
+        return $this->rua ?? "";
     }
 
     public function setRua(string $rua): void
@@ -247,7 +247,7 @@ class Usuario extends Cadastravel
 
     public function getComplemento(): string
     {
-        return $this->complemento;
+        return $this->complemento ?? "";
     }
 
     public function setComplemento(string $complemento): void
@@ -257,7 +257,7 @@ class Usuario extends Cadastravel
 
     public function getNumero(): string
     {
-        return $this->numero;
+        return $this->numero ?? "";
     }
 
     public function setNumero(string $numero): void
@@ -267,7 +267,7 @@ class Usuario extends Cadastravel
 
     public function getBairro(): string
     {
-        return $this->bairro;
+        return $this->bairro ?? "";
     }
 
     public function setBairro(string $bairro): void
@@ -277,7 +277,7 @@ class Usuario extends Cadastravel
 
     public function getCidade(): string
     {
-        return $this->cidade;
+        return $this->cidade ?? "";
     }
 
     public function setCidade(string $cidade): void
@@ -287,7 +287,7 @@ class Usuario extends Cadastravel
 
     public function getEstado(): string
     {
-        return $this->estado;
+        return $this->estado ?? "";
     }
 
     public function setEstado(string $estado): void
@@ -297,7 +297,7 @@ class Usuario extends Cadastravel
 
     public function getPais(): string
     {
-        return $this->pais;
+        return $this->pais ?? "";
     }
 
     public function setPais(string $pais): void
