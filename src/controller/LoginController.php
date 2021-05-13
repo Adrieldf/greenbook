@@ -28,7 +28,7 @@ $usuario = $objectRepository->findOneBy(array('email' => $login));
 $problemas = FALSE;
 if ($usuario) {
     if (strcmp($senha, $usuario->getSenha())) {
-        preencheSessoes($usuario->getId(), $usuario->getNome(), false);
+        preencheSessoes($usuario->getId(), $usuario->getNome(), false, $usuario->isAdmin());
 
         echo "<script> console.log('Login feito com sucesso! Usuario: ' " .  $_SESSION['nome_usuario'] . " </script>";
         header("Location: ../view/perfil-usuario.php?id=" . $usuario->getId());
@@ -42,7 +42,7 @@ if ($usuario) {
     $empresa = $repository->findOneBy(array('email' => $login));
     if($empresa){
         if (strcmp($senha, $empresa->getSenha())) {
-            preencheSessoes($empresa->getId(),$empresa->getNomeFantasia(), true );
+            preencheSessoes($empresa->getId(),$empresa->getNomeFantasia(), true, false);
             header("Location: ../view/perfil-empresa.php?id=" . $empresa->getId());
             exit;
         }
@@ -59,10 +59,11 @@ if ($problemas == TRUE) {
     exit;
 }
 
-function preencheSessoes($id, $nome, $empresa){
+function preencheSessoes($id, $nome, $empresa, $admin){
     $_SESSION["id_usuario"] = $id;
     $_SESSION["nome_usuario"] = stripslashes($nome);
     $_SESSION["empresa"] = $empresa;
+    $_SESSION["admin"] = $admin;
 }
 function usuarioRepositoryClass($myClass): UsuarioRepository
 {

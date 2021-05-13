@@ -69,6 +69,9 @@ class Usuario extends Cadastravel
     /** @Column(type="string", nullable=true) */
     private string $pais;
 
+    /** @Column(type="boolean", nullable=true) */
+    private string $admin;
+
 
     public function __construct()
     {
@@ -303,5 +306,15 @@ class Usuario extends Cadastravel
     public function setPais(string $pais): void
     {
         $this->pais = $pais;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->admin ?? false;
+    }
+
+    public function setAdmin(bool $admin): void
+    {
+        $this->admin = $admin;
     }
 }

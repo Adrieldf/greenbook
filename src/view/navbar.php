@@ -4,6 +4,7 @@ session_start();
 $_nomeUsuario = @$_SESSION["nome_usuario"];
 $_idUsuario = @$_SESSION["id_usuario"];
 $_empresa = @$_SESSION["empresa"];
+$_admin = @$_SESSION["admin"];
 ?>
 
 <header>
@@ -30,6 +31,9 @@ $_empresa = @$_SESSION["empresa"];
         </li>
      -->
         </ul>
+        <?php if ($_admin != "" && $_admin) : ?>
+          <label>Admin!</label>
+        <?php endif; ?>
         <?php if ($_nomeUsuario != "") : ?>
           <div class="d-flex">
 
