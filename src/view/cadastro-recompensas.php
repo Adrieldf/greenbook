@@ -17,6 +17,9 @@ require_once("header.php");
 include("header.php");
 include("navbar.php");
 
+$id = @$_GET["Id"];
+$descricao = @$_GET["descricao"];
+
 $factory = new EntityManagerFactory();
 $entityManager = $factory->getEntityManager();
 $recompensaRepository = $entityManager->getRepository(Recompensa::class);
@@ -37,6 +40,31 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
+                <div class="container-fluid border ">
+                    <form method="get" action="#">
+                        <div class="col-md-12 cadastro-form">
+                            <div class="form-row row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="endereco">ID</label>
+                                        <input type="text" class="form-control" id="Id" name="Id" value="<?= $id ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="numero">Descrição</label>
+                                        <input type="numero" class="form-control" id="descricao" name="descricao" value="<?= $descricao ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary botao-pesquisar" value="Pesquisar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="container-fluid border">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-condensed ">
@@ -55,6 +83,16 @@ function recompensaRepositoryClass($myClass): RecompensaRepository
                                 <tbody>
                                     <?php
                                     foreach ($recompensas as $linha) {
+                                        if (!empty($_GET["Id"])) {
+                                            if ($linha->getID() != $_GET["Id"]) {
+                                                continue;
+                                            }
+                                        }
+                                        if (!empty($_GET["descricao"])) {
+                                            if ($linha->getDescricao() != $_GET["descricao"]) {
+                                                continue;
+                                            }
+                                        }
                                         echo '<tr>';
                                         echo '<td class="cadastro-recompensa-tabela-col1">';
                                         echo '<input type="submit" onclick="botaoEditarRecompensa(

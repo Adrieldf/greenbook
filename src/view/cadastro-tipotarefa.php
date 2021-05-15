@@ -18,6 +18,9 @@ require_once("header.php");
 include("header.php");
 include("navbar.php");
 
+$id = @$_GET["Id"];
+$nome = @$_GET["nome"];
+
 $factory = new EntityManagerFactory();
 $entityManager = $factory->getEntityManager();
 $tipoRepository = $entityManager->getRepository(TipoDeTarefa::class);
@@ -38,6 +41,31 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
             </div>
             <div class="col-md-8">
                 <div class="container-fluid border ">
+                    <form method="get" action="#">
+                        <div class="col-md-12 cadastro-form">
+                            <div class="form-row row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="endereco">ID</label>
+                                        <input type="text" class="form-control" id="Id" name="Id" value="<?= $id ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="numero">Nome</label>
+                                        <input type="numero" class="form-control" id="nome" name="nome" value="<?= $nome ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary botao-pesquisar" value="Pesquisar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="container-fluid border ">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-condensed ">
                             <thead>
@@ -54,6 +82,18 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
                                 <tbody>
                                     <?php
                                     foreach ($tiposTarefas as $linha) {
+
+                                        if (!empty($_GET["Id"])) {
+                                            if ($linha->getID() != $_GET["Id"]) {
+                                                continue;
+                                            }
+                                        }
+                                        if (!empty($_GET["nome"])) {
+                                            if ($linha->getNome() != $_GET["nome"]) {
+                                                continue;
+                                            }
+                                        }
+
                                         echo '<tr>';
                                         echo '<td class="cadastro-tipotarefa-tabela-col1">';
                                         echo '<input type="submit" onclick="botaoEditarTipoTarefa(
