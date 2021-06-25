@@ -117,7 +117,7 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
                         <form class="cadastro-form" method="POST" action="../controller/CadastroTipoDeTarefaController.php">
                             <div class="form-row row">
                                 <div class="form-group col-md-4">
-                                    <label for="nome">Nome tarefa</label>
+                                    <label for="nome">Nome tipo tarefa</label>
                                     <input type="text" class="form-control" id="txtTarefa" name="txtTarefa">
                                 </div>
                                 <div class="form-group col-md-1 botao-salvar-tarefa">

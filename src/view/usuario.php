@@ -92,13 +92,10 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         <a class="nav-link" data-toggle="tab" href="#menu1">Tarefas não con.</a>
                     </li>
                     <li class="nav-item usuario-tab">
-                        <a class="nav-link" data-toggle="tab" href="#menu2">Títulos</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu2">Loja</a>
                     </li>
                     <li class="nav-item usuario-tab">
-                        <a class="nav-link" data-toggle="tab" href="#menu3">Loja</a>
-                    </li>
-                    <li class="nav-item usuario-tab">
-                        <a class="nav-link" data-toggle="tab" href="#menu4">Ranking</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu3">Ranking</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
