@@ -1,5 +1,6 @@
 :root {
   --dark-green: #6aa84f;
+  --darkish-green: #598d43;
   --light-green: #b6d7a8;
   --light-text: white;
   --dark-text: black;
@@ -106,152 +107,149 @@
   text-align: center;
 }
 
-.usuario-tab{
+.usuario-tab {
   width: 20%;
 }
 
-.tabela{
+.tabela {
   max-height: 250px;
   width: 100%;
-  margin: 0; 
-  overflow-y: 
-  auto;
+  margin: 0;
+  overflow-y: auto;
 }
 
-.cadastro-form{
+.cadastro-form {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.cadastro-tarefa-tabela-col1{
+.cadastro-tarefa-tabela-col1 {
   width: 10%;
 }
 
-.cadastro-tarefa-tabela-col2{
+.cadastro-tarefa-tabela-col2 {
   width: 15%;
 }
 
-.cadastro-tarefa-tabela-col3{
+.cadastro-tarefa-tabela-col3 {
   width: 20%;
 }
 
-.cadastro-tarefa-tabela-col4{
+.cadastro-tarefa-tabela-col4 {
   width: 20%;
 }
 
-.cadastro-tarefa-tabela-col5{
+.cadastro-tarefa-tabela-col5 {
   width: 20%;
 }
 
-.cadastro-tarefa-tabela-col6{
+.cadastro-tarefa-tabela-col6 {
   width: 15%;
 }
 
-.botao-salvar-tarefa{
+.botao-salvar-tarefa {
   margin-top: 2.8%;
 }
 
-.botao-cancelar-tarefa{
+.botao-cancelar-tarefa {
   margin-top: 2.8%;
   margin-left: 1%;
 }
 
-.botao-pesquisar{
+.botao-pesquisar {
   margin-top: 13%;
   margin-left: 1%;
 }
 
-.cadastro-recompensa-tabela-col1{
+.cadastro-recompensa-tabela-col1 {
   width: 10%;
 }
 
-.cadastro-recompensa-tabela-col2{
+.cadastro-recompensa-tabela-col2 {
   width: 10%;
 }
 
-.cadastro-recompensa-tabela-col3{
+.cadastro-recompensa-tabela-col3 {
   width: 60%;
 }
 
-.cadastro-recompensa-tabela-col4{
+.cadastro-recompensa-tabela-col4 {
   width: 10%;
 }
 
-.cadastro-recompensa-tabela-col5{
+.cadastro-recompensa-tabela-col5 {
   width: 10%;
 }
 
-.cadastro-tipotarefa-tabela-col1{
+.cadastro-tipotarefa-tabela-col1 {
   width: 25%;
 }
 
-.cadastro-titulo-tabela-col1{
+.cadastro-titulo-tabela-col1 {
   width: 10%;
 }
 
-.cadastro-titulo-tabela-col2{
+.cadastro-titulo-tabela-col2 {
   width: 10%;
 }
 
-.cadastro-titulo-tabela-col3{
+.cadastro-titulo-tabela-col3 {
   width: 20%;
 }
 
-.cadastro-titulo-tabela-col4{
+.cadastro-titulo-tabela-col4 {
   width: 40%;
 }
 
-.cadastro-titulo-tabela-col5{
+.cadastro-titulo-tabela-col5 {
   width: 10%;
 }
 
-.cadastro-titulo-tabela-col6{
+.cadastro-titulo-tabela-col6 {
   width: 10%;
 }
 
-.tarefa{
-  min-height: 150px ;
-  background-color:#bff5bf;
-  margin:auto;
-  text-align:center;
+.tarefa {
+  min-height: 150px;
+  background-color: #bff5bf;
+  margin: auto;
+  text-align: center;
 }
 
-.loja{
-  min-height: 150px ;
-  background-color:#bff5bf;
-  margin:auto;
-  text-align:center;
+.loja {
+  min-height: 150px;
+  background-color: #bff5bf;
+  margin: auto;
+  text-align: center;
 }
 
-
-.loja-valor{
-  min-height: 50px ;
+.loja-valor {
+  min-height: 50px;
 }
 
-.loja-comprar{
-  min-height: 50px ;
+.loja-comprar {
+  min-height: 50px;
 }
 
-.loja-botao-comprar{
+.loja-botao-comprar {
   margin-top: 5%;
 }
 
-.tarefaTexto{
+.tarefaTexto {
   margin-top: 5%;
 }
 
-.titulo-col1{
+.titulo-col1 {
   width: 15%;
 }
 
-.titulo-col2{
+.titulo-col2 {
   width: 25%;
 }
 
-.titulo-col3{
+.titulo-col3 {
   width: 60%;
 }
-
 
 .icon-button {
   text-decoration: none;
@@ -304,13 +302,50 @@
 }
 .edit-imagem-usuario {
   position: relative;
-    float: right;
-    right: 50px;
-    bottom: 50px;
+  float: right;
+  right: 50px;
+  bottom: 50px;
 }
 .edit-titulo-usuario {
   position: relative;
-    float: right;
-    top: -40px;
-    right: 15px;
+  float: right;
+  top: -40px;
+  right: 15px;
+}
+
+.drop-down
+{
+  background-color: var(--light-green);
+  border-radius: 10px;
+  margin: 5px;
+}
+.drop-down:hover {
+  background-color: var(--darkish-green);
+}
+.drop-down-item-frame {
+  margin-top: -5px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 100%;
+}
+.drop-down-item {
+  padding-left: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: var(--light-green);
+  border-radius: 10px;
+  margin: 5px;
+}
+.drop-down-item:hover {
+  background-color: var(--dark-green);
+}
+.drop-down-item a {
+  color: var(--dark-text);
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.no-focus-box-shadow:focus{
+  box-shadow: none;
 }

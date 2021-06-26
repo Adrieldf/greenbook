@@ -17,34 +17,32 @@ $_admin = @$_SESSION["admin"];
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 
-          <!-- Usar o dropdown aqui para quando o usuario estiver logado depois -->
-          <!--    <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Link
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-     -->
         </ul>
-        <?php if ($_admin != "" && $_admin) : ?>
-          <label>Admin!</label>
-        <?php endif; ?>
+
         <?php if ($_nomeUsuario != "") : ?>
           <div class="d-flex">
+            <div class="dropdown drop-down">
+              <button class="btn btn-default dropdown-toggle no-focus-box-shadow" type="button" id="ddmPerfil">
+                <?= $_nomeUsuario ?>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu drop-down-item-frame" id="ddmPerfilItens">
+                <?php if ($_admin != "" && $_admin) : ?>
+                  <li class="drop-down-item"><label>Admin!</label></li>
+                <?php endif; ?>
+                <li class="drop-down-item"><a href="postagens.php">Postagens</a></li>
+                <?php if ($_empresa != "" && $_empresa) : ?>
+                  <li class="drop-down-item"><a href="perfil-empresa.php?id=<?= $_idUsuario ?>">Perfil</a></li>
+                <?php else : ?>
+                  <li class="drop-down-item"><a href="perfil-usuario.php?id=<?= $_idUsuario ?>">Perfil</a></li>
+                <?php endif; ?>
 
-            <?php if ($_empresa != "" && $_empresa) : ?>
-              <button class="btn btn-outline-success navbar-button" onclick="window.location.href='perfil-empresa.php?id=<?= $_idUsuario ?>';"> <?= $_nomeUsuario ?> </button>
-            <?php else : ?>
-              <button class="btn btn-outline-success navbar-button" onclick="window.location.href='perfil-usuario.php?id=<?= $_idUsuario ?>';"> <?= $_nomeUsuario ?> </button>
-            <?php endif; ?>
-            &nbsp;
-            <button class="btn btn-outline-success navbar-button" onclick="window.location.href='../controller/LogoutController.php';">Sair</button>
+
+                <li class="drop-down-item"><a href="../controller/LogoutController.php">Sair</a></li>
+              </ul>
+            </div>
           </div>
+
         <?php else : ?>
           <div class="d-flex">
             <button class="btn btn-outline-success navbar-button" onclick="window.location.href='signup.php';">Cadastrar-se</button>
@@ -56,4 +54,6 @@ $_admin = @$_SESSION["admin"];
 
       </div>
     </div>
+
+    <script type="text/javascript" src="../scripts/NavBar.js"></script>
 </header>
