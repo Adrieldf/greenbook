@@ -42,7 +42,7 @@ $usuario->setCidade($cidade);
 $usuario->setPais($pais);
 $usuario->setEstado($estado);
 
-$result =  $repository->save($usuario); 
+$result =  $repository->save($usuario);
 
 function repositoryClass($myClass): UsuarioRepository
 {

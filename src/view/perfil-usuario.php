@@ -35,6 +35,7 @@ $cidade = "";
 $estado = "";
 $pais = "";
 $senhaAntiga = "";
+$fotoPerfil = "";
 
 if (!is_null($idUsuario)) {
 
@@ -57,6 +58,7 @@ if (!is_null($idUsuario)) {
         $cidade = $usuario->getCidade();
         $pais = $usuario->getPais();
         $estado = $usuario->getEstado();
+        $fotoPerfil = $usuario->getFotoPerfil();
     }
 }
 ?>
@@ -72,7 +74,7 @@ if (!is_null($idUsuario)) {
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <img class="perfil-usuario-imagem" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh3sMJVjn4X-HocVUO5GcSBbpctWhzhpCU4Q&usqp=CAU">
+                                    <img class="perfil-usuario-imagem" src="<?= $fotoPerfil ?>" >
                                     <a id="btnEditarImagem" class="btn btn-primary icon-button edit-imagem-usuario" title="Editar imagem do perfil">
                                         <i class="far fa-edit"></i>
                                     </a>
@@ -90,6 +92,8 @@ if (!is_null($idUsuario)) {
                         <div class="col-md-8">
                             <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $idUsuario ?>">
                             <input type="hidden" id="senhaAntiga" name="senhaAntiga" value="<?= $senhaAntiga ?>">
+                            <input type="hidden" id="fotoPerfil" name="fotoPerfil" value="<?= $fotoPerfil ?>">
+                            <input type="file" id="uploadImagem" name="uploadImagem" style="display: none;" multiple/>
                             <div class="form-group">
                                 <label for="txtNome">Nome</label>
                                 <input type="text" class="form-control" id="txtNome" name="txtNome" value="<?= $nome ?>">

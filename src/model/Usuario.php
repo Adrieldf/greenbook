@@ -4,6 +4,7 @@ namespace greenbook\model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\BlobType;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -72,6 +73,8 @@ class Usuario extends Cadastravel
     /** @Column(type="boolean", nullable=true) */
     private string $admin;
 
+    /** @Column(type="string", nullable=true) */
+    private string $fotoperfil;
 
     public function __construct()
     {
@@ -317,4 +320,15 @@ class Usuario extends Cadastravel
     {
         $this->admin = $admin;
     }
+
+    public function getFotoPerfil()
+    {
+       return $this->fotoperfil ?? null;
+    }
+
+    public function setFotoPerfil($foto)
+    {
+        $this->fotoperfil = $foto ?? "";
+    }
+  
 }

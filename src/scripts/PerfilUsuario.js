@@ -24,7 +24,43 @@ $(document).ready(function () {
     });
 
     $("#btnEditarImagem").click(() => {
-        alert("editar imagem");
+        $('#uploadImagem').trigger('click');
+    });
+
+    $('#uploadImagem').on('change', function () {
+        var file_data = $('#uploadImagem').prop('files')[0];
+        //console.log("File", file_data);
+        var form_data = new FormData();
+        var reader = new FileReader();
+       
+        reader.onload = function (e) {
+            form_data.append('idUsuario', $("#idUsuario").val());
+            form_data.append('fotoPerfil', e.target.result);
+
+            $.ajax({
+                url: 'http://localhost:81/greenbook/src/controller/AtualizaFotoPerfil.php', // point to server-side controller method
+                dataType: 'text', // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function (response) {
+                    window.location = response;
+                    // console.log("upload success (?)", response);
+                    //$("#form").html(response);
+                    // alert(response); // display success response from the server
+                },
+                error: function (response) {
+                    console.log("upload failed (?)", response);
+                    // alert(response); // display error response from the server
+                }
+            });
+        }
+
+        reader.readAsDataURL(file_data);
+
+
     });
 
 });
