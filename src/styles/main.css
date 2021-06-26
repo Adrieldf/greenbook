@@ -300,6 +300,7 @@
   margin-bottom: 10px;
   border-radius: 50%;
   border: 2px solid var(--light-green);
+  object-fit: cover;
 }
 .edit-imagem-usuario {
   position: relative;
