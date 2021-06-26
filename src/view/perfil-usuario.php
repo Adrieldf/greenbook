@@ -74,7 +74,7 @@ if (!is_null($idUsuario)) {
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <img class="perfil-usuario-imagem" src="<?= $fotoPerfil ?>" >
+                                    <img class="perfil-usuario-imagem" src="<?= is_null($fotoPerfil) ? "../../img/green-tree-logo.jpg" : $fotoPerfil ?>" >
                                     <a id="btnEditarImagem" class="btn btn-primary icon-button edit-imagem-usuario" title="Editar imagem do perfil">
                                         <i class="far fa-edit"></i>
                                     </a>

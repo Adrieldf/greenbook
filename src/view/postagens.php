@@ -89,7 +89,7 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         <a class="nav-link active" data-toggle="tab" href="#home">Tarefas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu1">Tarefas completas</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu1">Tarefas concluídas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu2">Loja</a>
@@ -128,7 +128,7 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         }
                         ?></div>
                     <div id="menu2" class="container tab-pane fade"><br>
-                       <?php
+                        <?php
 
                         foreach ($recompensas as $linha) {
                             echo '<div class="container-fluid p-3 my-3 border loja">';
@@ -143,7 +143,7 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                             echo '</div>';
                         }
                         ?>
-                        
+
                     </div>
                     <div id="menu3" class="container tab-pane fade"><br>
                         <table class="table table-hover">
@@ -173,7 +173,7 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         <h5>Posts da comunidade</h5>
                     </div>
                     <div class="col-lg-3">
-                        <button type="button" class="btn btn-success" style="float: right; margin-bottom: 2px;">Criar Post</button>
+                        <button type="button" class="btn btn-success" style="float: right; margin-bottom: 2px;" data-toggle="modal" data-target="#exampleModalCenter">Criar Post</button>
                     </div>
 
                 </div>
@@ -182,13 +182,48 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
             </div>
         </div>
     </div>
-    <script>
-        function clica() {
-            alert("2");
-            var x = document.getElementById("menu4");
-            x.style.display = "show";
-        }
-    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Criar post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none; background-color: transparent;">
+                        <i aria-hidden="true" class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" action="../controller/AtualizaPerfilUsuarioController.php" onsubmit="return validateForm()" method="POST">
+                        <div class="form-row row">
+                            <div class="form-group">
+                                <label for="txtNome">Título</label>
+                                <input type="text" class="form-control" id="txtTitulo" name="txtTitulo" value="">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row row">
+                            <div class="form-group">
+                                <label for="txtNome">Descrição</label>
+                                <textarea class="form-control" id="txtDescricao" name="txtDescricao" style="max-height: 400px;"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row row">
+                            <div class="form-group">
+                                <label for="txtNome">Selecionar imagem</label>
+                                <img>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Postar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
