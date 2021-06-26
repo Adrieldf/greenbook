@@ -82,19 +82,19 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
 <body>
     <div class="container-fluid p-3 my-3 border">
         <div class="row">
+            <h2>Bem vindo</h2>
             <div class="col-lg-6">
-                <h2>Bem vindo</h2>
                 <ul class="nav nav-tabs">
-                    <li class="nav-item usuario-tab">
+                    <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#home">Tarefas</a>
                     </li>
-                    <li class="nav-item usuario-tab">
-                        <a class="nav-link" data-toggle="tab" href="#menu1">Tarefas não con.</a>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu1">Tarefas completas</a>
                     </li>
-                    <li class="nav-item usuario-tab">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu2">Loja</a>
                     </li>
-                    <li class="nav-item usuario-tab">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu3">Ranking</a>
                     </li>
                 </ul>
@@ -128,29 +128,7 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         }
                         ?></div>
                     <div id="menu2" class="container tab-pane fade"><br>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="titulo-col1" scope="col">Valor</th>
-                                    <th class="titulo-col2" scope="col">Nome</th>
-                                    <th class="titulo-col3" scope="col">Descrição</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                foreach ($titulos as $linha) {
-                                    echo '<tr>';
-                                    echo '<th class="titulo-col1">' . $linha->getValor() . '</th>';
-                                    echo '<th class="titulo-col2">' . $linha->getNome() . '</th>';
-                                    echo '<th class="titulo-col3">' . $linha->getDescricao() . '</th>';
-                                    echo '</tr>';
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="menu3" class="container tab-pane fade"><br>
-                        <?php
+                       <?php
 
                         foreach ($recompensas as $linha) {
                             echo '<div class="container-fluid p-3 my-3 border loja">';
@@ -165,8 +143,9 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                             echo '</div>';
                         }
                         ?>
+                        
                     </div>
-                    <div id="menu4" class="container tab-pane fade"><br>
+                    <div id="menu3" class="container tab-pane fade"><br>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -194,7 +173,7 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         <h5>Posts da comunidade</h5>
                     </div>
                     <div class="col-lg-3">
-                        <button type="button" class="btn btn-success" style="float: right;">Criar Post</button>
+                        <button type="button" class="btn btn-success" style="float: right; margin-bottom: 2px;">Criar Post</button>
                     </div>
 
                 </div>
