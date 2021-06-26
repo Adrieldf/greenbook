@@ -27,10 +27,13 @@ $_admin = @$_SESSION["admin"];
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu drop-down-item-frame" id="ddmPerfilItens">
+
                 <?php if ($_admin != "" && $_admin) : ?>
                   <li class="drop-down-item"><label>Admin!</label></li>
                 <?php endif; ?>
+
                 <li class="drop-down-item"><a href="postagens.php">Postagens</a></li>
+                
                 <?php if ($_empresa != "" && $_empresa) : ?>
                   <li class="drop-down-item"><a href="perfil-empresa.php?id=<?= $_idUsuario ?>">Perfil</a></li>
                 <?php else : ?>

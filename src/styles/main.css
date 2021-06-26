@@ -2,6 +2,7 @@
   --dark-green: #6aa84f;
   --darkish-green: #598d43;
   --light-green: #b6d7a8;
+  --lighter-green: #d0f0c3;
   --light-text: white;
   --dark-text: black;
   --green: #8ed670;
@@ -21,15 +22,15 @@
 }
 
 .navbar-button {
+  border: none;
+  border-radius: 10px;
   color: var(--dark-text);
-  border-color: var(--dark-text);
   background-color: var(--light-green);
 }
 
 .navbar-button:hover {
   color: var(--dark-text);
-  border-color: var(--dark-text);
-  background-color: var(--green);
+  background-color: var(--darkish-green);
 }
 
 .navbar-title {
@@ -313,8 +314,7 @@
   right: 15px;
 }
 
-.drop-down
-{
+.drop-down {
   background-color: var(--light-green);
   border-radius: 10px;
   margin: 5px;
@@ -346,6 +346,34 @@
   height: 100%;
   display: block;
 }
-.no-focus-box-shadow:focus{
+.no-focus-box-shadow:focus {
   box-shadow: none;
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid var(--light-green);
+}
+
+.nav-tabs .nav-item {
+  color: var(--dark-text);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.nav-item .nav-link {
+  color: var(--dark-text);
+  background-color: var(--light-text);
+}
+.nav-item .nav-link:hover {
+  background-color: var(--light-green);
+}
+.nav-item .nav-link.active{
+  color: var(--dark-text);
+  background-color: var(--light-green);
+  border-bottom: 1px solid transparent;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid var(--light-green);
+
 }
