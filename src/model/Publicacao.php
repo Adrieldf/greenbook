@@ -51,6 +51,12 @@ class Publicacao
 
     /** @ManyToMany(targetEntity="Reacao", cascade="all") */
     private Collection $reacao;
+    
+    /** @Column(type="string", nullable=true) */
+    private string $imagem;
+
+    /** @Column(type="string", nullable=true) */
+    private string $descricao;
 
     public function __construct(string $texto)
     {
@@ -153,5 +159,23 @@ class Publicacao
     public function setReacao(Collection $reacao): void
     {
         $this->reacao = $reacao;
+    }
+    public function getImagem(): string
+    {
+        return $this->imagem ?? "";
+    }
+
+    public function setImagem(string $imagem): void
+    {
+        $this->imagem = $imagem ?? "";
+    }
+    public function getDescricao(): string
+    {
+        return $this->descricao ?? "";
+    }
+
+    public function setDescricao(string $descricao): void
+    {
+        $this->descricao = $descricao ?? "";
     }
 }

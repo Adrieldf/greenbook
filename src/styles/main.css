@@ -373,7 +373,13 @@
   border-bottom: 1px solid transparent;
 }
 
-.nav-tabs {
-  border-bottom: 1px solid var(--light-green);
+.tab-pane {
+  border: 1px solid var(--light-green);
+}
 
+.preview-foto-post{
+  width: 140px;
+  height: 140px;
+  object-fit: scale-down;
+  display: block;
 }

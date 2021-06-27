@@ -93,7 +93,7 @@ if (!is_null($idUsuario)) {
                             <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $idUsuario ?>">
                             <input type="hidden" id="senhaAntiga" name="senhaAntiga" value="<?= $senhaAntiga ?>">
                             <input type="hidden" id="fotoPerfil" name="fotoPerfil" value="<?= $fotoPerfil ?>">
-                            <input type="file" id="uploadImagem" name="uploadImagem" style="display: none;" multiple/>
+                            <input type="file" id="uploadImagem" name="uploadImagem" style="display: none;" accept="image/png, image/jpeg"/>
                             <div class="form-group">
                                 <label for="txtNome">Nome</label>
                                 <input type="text" class="form-control" id="txtNome" name="txtNome" value="<?= $nome ?>">

@@ -22,8 +22,8 @@ $_admin = @$_SESSION["admin"];
         <?php if ($_nomeUsuario != "") : ?>
           <div class="d-flex">
             <div class="dropdown drop-down">
-              <button class="btn btn-default dropdown-toggle no-focus-box-shadow" type="button" id="ddmPerfil">
-                <?= $_nomeUsuario ?>
+              <button class="btn btn-default dropdown-toggle no-focus-box-shadow" type="button" id="ddmPerfil" style="min-width: 160px;">
+                <label><?= $_nomeUsuario ?></label>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu drop-down-item-frame" id="ddmPerfilItens">

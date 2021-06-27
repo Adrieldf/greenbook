@@ -8,14 +8,14 @@ require_once __DIR__ . '\..\..\vendor\autoload.php';
 use greenbook\helper\EntityManagerFactory;
 use greenbook\model\Tarefa;
 use greenbook\model\TipoDeTarefa;
-use greenbook\model\Titulo;
 use greenbook\model\Recompensa;
 use greenbook\model\Usuario;
+use greenbook\model\Publicacao;
 use greenbook\repository\UsuarioRepository;
 use greenbook\repository\RecompensaRepository;
-use greenbook\repository\TituloRepository;
 use greenbook\repository\TipoDeTarefaRepository;
 use greenbook\repository\TarefaRepository;
+use greenbook\repository\PublicacaoRepository;
 
 require_once("header.php");
 ?>
@@ -30,28 +30,23 @@ $entityManager = $factory->getEntityManager();
 
 $tipoRepository = $entityManager->getRepository(TipoDeTarefa::class);
 $tipoRepository = tipoRepositoryClass($tipoRepository);
-
 $tiposTarefas = $tipoRepository->findAll();
 
 $tarefaRepository = $entityManager->getRepository(Tarefa::class);
 $tarefaRepository = tarefaRepositoryClass($tarefaRepository);
-
 $tarefas = $tarefaRepository->findAll();
-
-$tituloRepository = $entityManager->getRepository(Titulo::class);
-$tituloRepository = tituloRepositoryClass($tituloRepository);
-
-$titulos = $tituloRepository->findAll();
 
 $recompensaRepository = $entityManager->getRepository(Recompensa::class);
 $recompensaRepository = recompensaRepositoryClass($recompensaRepository);
-
 $recompensas = $recompensaRepository->findAll();
 
 $usuarioRepository = $entityManager->getRepository(Usuario::class);
 $usuarioRepository = usuarioRepositoryClass($usuarioRepository);
-
 $usuarios = $usuarioRepository->findAll();
+
+$publicacaoRepository = $entityManager->getRepository(Publicacao::class);
+$publicacaoRepository = publicacaoRepositoryClass($publicacaoRepository);
+$publicacoes = $publicacaoRepository->findAll();
 
 function tarefaRepositoryClass($myClass): TarefaRepository
 {
@@ -61,28 +56,28 @@ function tipoRepositoryClass($myClass): TipoDeTarefaRepository
 {
     return $myClass;
 }
-
-function tituloRepositoryClass($myClass): TituloRepository
-{
-    return $myClass;
-}
-
 function recompensaRepositoryClass($myClass): RecompensaRepository
 {
     return $myClass;
 }
-
 function usuarioRepositoryClass($myClass): UsuarioRepository
 {
     return $myClass;
 }
+function publicacaoRepositoryClass($myClass): PublicacaoRepository
+{
+    return $myClass;
+}
+
+
+$fotoPost = null;
 
 ?>
 
 <body>
     <div class="container-fluid p-3 my-3 border">
         <div class="row">
-            <h2>Bem vindo</h2>
+            <h2>Bem-vinda(o)!</h2>
             <div class="col-lg-6">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
@@ -193,18 +188,20 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         <i aria-hidden="true" class="fas fa-times"></i>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form id="form" action="../controller/AtualizaPerfilUsuarioController.php" onsubmit="return validateForm()" method="POST">
+                <form id="formPost" action="" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" id="idUsuario" name="idUsuario" value="<?= is_null($_empresa) || $_empresa == "" ? $_idUsuario : "" ?>">
+                        <input type="hidden" id="idEmpresa" name="idEmpresa" value="<?= is_null($_empresa) || $_empresa == "" ? "" : $_idUsuario ?>">
                         <div class="form-row row">
                             <div class="form-group">
-                                <label for="txtNome">Título</label>
+                                <label for="txtTitulo">Título</label>
                                 <input type="text" class="form-control" id="txtTitulo" name="txtTitulo" value="">
                             </div>
                         </div>
                         <br>
                         <div class="form-row row">
                             <div class="form-group">
-                                <label for="txtNome">Descrição</label>
+                                <label for="txtDescricao">Descrição</label>
                                 <textarea class="form-control" id="txtDescricao" name="txtDescricao" style="max-height: 400px;"></textarea>
                             </div>
                         </div>
@@ -212,18 +209,31 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         <div class="form-row row">
                             <div class="form-group">
                                 <label for="txtNome">Selecionar imagem</label>
-                                <img>
+                                <input type="file" id="uploadImagem" name="uploadImagem" style="display: none;" accept="image/png, image/jpeg" />
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img id="imgFotoPost" name="imgFotoPost" class="preview-foto-post" src="<?= is_null($fotoPost) ? "../../img/no-image.jpg" : $fotoPost ?>">
+                                    </div>
+                                    <div class="col-md-8" style="display: flex; align-items: center;">
+                                        <a id="btnAddImagem" class="btn btn-primary icon-button " title="Enviar imagem">
+                                            <i id="addImageIcon" class="fas fa-plus"></i>
+                                            <label>Imagem</label>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Postar</button>
-                </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="addPost" class="btn btn-primary">Postar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </body>
+<script type="text/javascript" src="../scripts/Postagens.js"></script>
 
 </html>
