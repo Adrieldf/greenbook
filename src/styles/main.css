@@ -57,6 +57,7 @@
 .home-container-ranking {
   border-style: groove;
   border-color: green;
+  background-color: white;
 }
 
 .home-table {
@@ -382,4 +383,13 @@
   height: 140px;
   object-fit: scale-down;
   display: block;
+}
+
+.image-tree{
+  zoom: 1;
+}
+
+.container-image-tree{
+  height: 50px;
+  width: 50%;
 }

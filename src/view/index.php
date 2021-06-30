@@ -2,6 +2,9 @@
 
 namespace greenbook\view;
 
+use greenbook\helper\EntityManagerFactory;
+use greenbook\model\Usuario;
+use greenbook\repository\UsuarioRepository;
 require_once __DIR__ . '\..\controller\MainController.php';
 require_once __DIR__ . '\..\..\vendor\autoload.php';
 require_once("header.php");
@@ -13,6 +16,26 @@ require_once("header.php");
 include("header.php");
 
 include("navbar.php");
+$factory = new EntityManagerFactory();
+$entityManager = $factory->getEntityManager();
+
+$qb = $entityManager->createQueryBuilder();
+$qb->select(array('u'))
+   ->from('greenbook\model\Usuario','u')
+   ->orderBy('u.pontuacaoGeral', 'DESC');
+
+$usuarios = $qb->getQuery()->getArrayResult();
+
+/*
+$usuarioRepository = $entityManager->getRepository(Usuario::class);
+$usuarioRepository = usuarioRepositoryClass($usuarioRepository);
+$usuarios = $usuarioRepository->findAll();*/
+
+function usuarioRepositoryClass($myClass): UsuarioRepository
+{
+    return $myClass;
+}
+
 ?>
 
 <body>
@@ -20,7 +43,7 @@ include("navbar.php");
     <div class="container-fluid p-3 my-3 border">
         <div class="row">
             <div class="col-lg-6">
-                <p>aqui vai uma foto</p>
+                <img height="300" width="300" src="../../img/green-tree-logo.jpg" alt="Arvore">
             </div>
             <div class="col-lg-6">
                 <h2>Grenbook</h2>
@@ -44,22 +67,32 @@ include("navbar.php");
     <div class="container-fluid p-3 my-3 bg-green">
         <div class="row">
             <div class="col-md-4">
-                <div class="container p-3 my-3 bg-success home-container-ranking">
+                <div class="container p-3 my-3 home-container-ranking">
                     <h2 class="home-text-ranking">Ranking</h2>
-                    <div class="table-responsive-xl">
-                        <table class="home-table">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <th class="home-table-header-col1">Posição</th>
-                                <th class="home-table-header-col2">Pontos</th>
-                                <th class="home-table-header-col3">Nome</th>
+                                <th scope="col">Pontos</th>
+                                <th scope="col">Nome</th>
                             </tr>
-                            <tr>
-                                <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">1º</td>
-                                <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">100</td>
-                                <td style="text-align: center; border: 1px solid black; border-collapse: collapse;">José</td>
-                            </tr>
-                        </table>
-                    </div>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $contador = 1;
+                            echo $usuarios;
+                            /*foreach ($usuarios as $linha) {
+                                echo '<tr>';
+                                echo '<th>' . $usuarios . '</th>';
+                                //echo '<th>' . $linha->getNome() . '</th>';
+                                echo '</tr>';
+                                $contador = $contador + 1;
+                                if($contador == 10){
+                                    break;
+                                }
+                            }*/
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="col-md-8 home-companies">
