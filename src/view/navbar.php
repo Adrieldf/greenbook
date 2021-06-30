@@ -29,7 +29,10 @@ $_admin = @$_SESSION["admin"];
               <ul class="dropdown-menu drop-down-item-frame" id="ddmPerfilItens">
 
                 <?php if ($_admin != "" && $_admin) : ?>
-                  <li class="drop-down-item"><label>Admin!</label></li>
+                  <li class="drop-down-item"><a href="cadastro-recompensas.php">Cadastro Recompensa</a></li>
+                  <li class="drop-down-item"><a href="cadastro-tarefas.php">Cadastro Tarefa</a></li>
+                  <li class="drop-down-item"><a href="cadastro-tipotarefa.php">Cadastro Tipo Tarefa</a></li>
+                  <li class="drop-down-item"><a href="cadastro-titulos.php">Cadastro Titulos</a></li>
                 <?php endif; ?>
 
                 <li class="drop-down-item"><a href="postagens.php">Postagens</a></li>

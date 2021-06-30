@@ -75,10 +75,10 @@ $fotoPost = null;
 ?>
 
 <body>
-    <div class="container-fluid p-3 my-3 border">
+    <div class="container container-fluid p-3 my-3 border">
         <div class="row">
             <h2>Bem-vinda(o)!</h2>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#home">Tarefas</a>
@@ -162,7 +162,7 @@ $fotoPost = null;
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <div class="row">
                     <div class="col-lg-9">
                         <h5>Posts da comunidade</h5>
