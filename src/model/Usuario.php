@@ -121,6 +121,11 @@ class Usuario extends Cadastravel
         $this->tarefas->add($tarefa);
     }
 
+    public function addTitulo(Titulo $titulo): void
+    {
+        $this->titulos->add($titulo);
+    }
+
     public function getEmail(): string
     {
         return $this->email;

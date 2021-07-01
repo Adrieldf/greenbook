@@ -4,15 +4,10 @@ $(document).ready(function () {
         $('#uploadImagem').trigger('click');
     });
 
-    $("#a.loja-botao-comprar").click(() => {
-        alert("tgfg");
-    });
-    
-
     $('#uploadImagem').on('change', function () {
         var file_data = $('#uploadImagem').prop('files')[0];
         var reader = new FileReader();
-       
+
         reader.onload = function (e) {
             var base64Img = e.target.result;
             $("#imgFotoPost").attr("src", base64Img);
@@ -40,22 +35,46 @@ $(document).ready(function () {
             data: form_data,
             type: 'post',
             success: function (response) {
-                
-               // window.location = response;
-               //console.log("upload success (?)", response);
+
+                // window.location = response;
+                //console.log("upload success (?)", response);
                 $("#error").html(response);
                 // alert(response); // display success response from the server
             },
             error: function (response) {
-               // console.log("upload failed (?)", response);
+                // console.log("upload failed (?)", response);
                 // alert(response); // display error response from the server
             }
         });
     });
 });
 
-function compraLoja(idTitulo,valorTitulo,saldo){
-    if(saldo<valorTitulo){
+function compraLoja(idTitulo, valorTitulo, saldo,idUsuario) {
+    if (saldo < valorTitulo) {
         alert("Você não possui saldo para comprar esse item.");
+    }
+    else {
+        $.ajax
+            ({
+                //Configurações
+                type: 'POST',//Método que está sendo utilizado.
+                dataType: 'json',//É o tipo de dado que a página vai retornar.
+                url: '../controller/CompraTitulo.php',//Indica a página que está sendo solicitada.
+                data: { idTitulo: idTitulo, idUsuario: idUsuario },//Dados para consulta
+                //função que será executada quando a solicitação for finalizada.
+                success: function (msg) {
+
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                    alert(errorMessage);
+                }
+            });
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', 'http://localhost/greenbook/src/controller/CompraTitulo.php');
+        var data = new FormData();
+        data.append('idTitulo', idTitulo);
+        data.append('idUsuario', idUsuario);
+        ajax.send(data);
+        window.location = "../view/postagens.php";
     }
 }
