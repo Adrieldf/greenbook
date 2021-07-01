@@ -222,6 +222,7 @@ $fotoPost = null;
 
                 </div>
                 <div class="container-fluid border">
+                                <div id="error"></div>
                 </div>
             </div>
         </div>

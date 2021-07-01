@@ -42,8 +42,8 @@ $(document).ready(function () {
             success: function (response) {
                 
                // window.location = response;
-               console.log("upload success (?)", response);
-                //$("#form").html(response);
+               //console.log("upload success (?)", response);
+                $("#error").html(response);
                 // alert(response); // display success response from the server
             },
             error: function (response) {
