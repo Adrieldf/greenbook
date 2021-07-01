@@ -6,8 +6,24 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 
 /** @Entity(repositoryClass="greenbook\repository\TituloRepository") */
-class Titulo extends Recompensa
+class Titulo
 {
+    /**
+     * @Id
+     * @GeneratedValue
+     * @Column(type="integer")
+     */
+    protected int $id;
+
+    /** @Column(type="string") */
+    protected string $descricao;
+
+    /** @Column(type="integer") */
+    protected int $valor;
+
+    /** @Column(type="boolean") */
+    protected bool $disponivelParaCompra;
+
     /** @Column(type="string") */
     private string $nome;
 
