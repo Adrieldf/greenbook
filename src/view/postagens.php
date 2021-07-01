@@ -136,6 +136,9 @@ $fotoPost = null;
                             echo '<div class="col-md-4"><h6>Pontos: ' . $linha->getValorEmPontos() . '</h6></div>';
                             echo '</div>';
                             echo '<h6 class="tarefaTexto">' . $linha->getDescricao() . '</h6>';
+                            echo '<div class="row">';
+                            echo '<div class="col-md-12" style=""><button class="btn btn-success" onclick="concluirTarefa(' . $linha->getId() . ',' . $_idUsuario . ')"> <i class="fas fa-check"></i> &nbsp; Concluir tarefa</button></div>';
+                            echo '</div>';
                             echo '</div>';
                         }
                         ?>
@@ -161,17 +164,17 @@ $fotoPost = null;
                         ?></div>
                     <div id="menu2" class="container tab-pane fade"><br>
                         <?php
-                        echo '<h2>Saldo: '.$usuario->getMoedas() .'</h2>';
+                        echo '<h2>Saldo: ' . $usuario->getMoedas() . '</h2>';
                         foreach ($titulos as $linha) {
 
                             $encontrou = 0;
-                            foreach($usuario->getTitulos() as $userTitulo){
-                                if($userTitulo->getId()==$linha->getId()){
+                            foreach ($usuario->getTitulos() as $userTitulo) {
+                                if ($userTitulo->getId() == $linha->getId()) {
                                     $encontrou = 1;
                                     break;
                                 }
                             }
-                            if($encontrou==1){
+                            if ($encontrou == 1) {
                                 continue;
                             }
 
@@ -181,7 +184,7 @@ $fotoPost = null;
                             //echo '<div class="col-md-5">Imagem</div>';
                             echo '<div class="col-md-6" style="height: 100%">';
                             echo '<div class="loja-valor">Valor: ' . $linha->getValor() . '</div>';
-                            echo '<div class="loja-comprar"><input id="loja-botao-comprar" class="loja-botao-comprar" type="submit" onclick="compraLoja('.$linha->getId().','. $linha->getValor().','. $usuario->getMoedas() .','.$usuario->getId().')" name="clickedL" value="Comprar"/></div>';
+                            echo '<div class="loja-comprar"><input id="loja-botao-comprar" class="loja-botao-comprar" type="submit" onclick="compraLoja(' . $linha->getId() . ',' . $linha->getValor() . ',' . $usuario->getMoedas() . ',' . $usuario->getId() . ')" name="clickedL" value="Comprar"/></div>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
@@ -217,12 +220,56 @@ $fotoPost = null;
                         <h5>Posts da comunidade</h5>
                     </div>
                     <div class="col-lg-3">
-                        <button type="button" class="btn btn-success" style="float: right; margin-bottom: 2px;" data-toggle="modal" data-target="#exampleModalCenter">Criar Post</button>
+                        <button type="button" id="openPostModal" class="btn btn-success" style="float: right; margin-bottom: 2px;" data-toggle="modal" data-target="#exampleModalCenter">Criar Post</button>
                     </div>
 
                 </div>
                 <div class="container-fluid border">
-                                <div id="error"></div>
+                    <?php
+
+                    function findUserById($id, $usuarios){
+                
+                    foreach ( $usuarios as $element ) {
+                        if ( $id == $element->getNome() ) {
+                            return $element;
+                        }
+                    }
+                
+                    return null;
+                }
+                    foreach ($publicacoes as $post) {
+                      
+
+                        echo '<div class="container-fluid p-3 my-3 border post">';
+                        echo '<div class="row">';
+                        
+                        if(!is_null($post->getUsuario()) && $post->getUsuario() != ""){
+                            echo '<div class="col-md-12" style="word-wrap:break-word;font-size: 14px;">Usuário ' . $post->getUsuario()->getNome() . ' postou:</div>';
+                        }else{
+                            echo '<div class="col-md-12" style="word-wrap:break-word;font-size: 14px;">Empresa ' . $post->getEmpresa()->getNomeFantasia() . 'postou:</div>';
+                        }
+                      
+                        echo '</div>';
+                        echo '<div class="row">';
+                        echo '<div class="col-md-12" style="word-wrap:break-word;"><h4>' . $post->getTexto() . '</h4></div>';
+                     
+                        echo '<div class="col-md-12" style="word-wrap:break-word;">' . $post->getDescricao() . '</div>';
+                        if ($post->getImagem() != "") {
+                            echo '<div class="col-md-12" style="height: 100%">';
+                            echo '<img style="width: 200px;height:200px;object-fit: scale-down;" src="' . $post->getImagem() . '" />';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                        
+                        echo '<div class="row" style="margin-top:10px">';
+                        echo '<div class="col-md-1" style=""><button class="btn btn-success"><i class="fas fa-thumbs-up"></i></button></div>';
+                        echo '<div class="col-md-1" style=""><button class="btn btn-success"><i class="fas fa-thumbs-down"></i></button></div>';
+                        echo '<div class="col-md-8" style=""><input type="text" placeholder="Deixe seu comentário..." class="form-control"></div>';
+                        echo '<div class="col-md-2" style=""><button class="btn btn-success">Enviar</button></div>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -242,6 +289,7 @@ $fotoPost = null;
                     <div class="modal-body">
                         <input type="hidden" id="idUsuario" name="idUsuario" value="<?= is_null($_empresa) || $_empresa == "" ? $_idUsuario : "" ?>">
                         <input type="hidden" id="idEmpresa" name="idEmpresa" value="<?= is_null($_empresa) || $_empresa == "" ? "" : $_idUsuario ?>">
+                        <input type="hidden" id="idTarefa" name="idTarefa" value="">
                         <div class="form-row row">
                             <div class="form-group">
                                 <label for="txtTitulo">Título</label>

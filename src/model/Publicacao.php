@@ -50,6 +50,9 @@ class Publicacao
 
     /** @Column(type="string", nullable=true) */
     private string $descricao;
+    
+    /** @Column(type="string", nullable=true) */
+    private string $imagem;
 
     public function __construct(string $texto)
     {

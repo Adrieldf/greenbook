@@ -11,7 +11,7 @@ $(document).ready(function () {
         reader.onload = function (e) {
             var base64Img = e.target.result;
             $("#imgFotoPost").attr("src", base64Img);
-            $("#imgFotoPost").attr("value", base64Img);
+            $("#imgFotoPost").val(base64Img);
             $("#addImageIcon").removeClass("fas fa-plus").addClass("far fa-edit");
         }
 
@@ -27,7 +27,7 @@ $(document).ready(function () {
         form_data.append('imgFotoPost', $("#imgFotoPost").val());
 
         $.ajax({
-            url: 'http://localhost/greenbook/src/controller/AddPost.php', // point to server-side controller method
+            url: 'http://localhost:81/greenbook/src/controller/AddPost.php', // point to server-side controller method
             dataType: 'text', // what to expect back from the server
             cache: false,
             contentType: false,
@@ -36,9 +36,9 @@ $(document).ready(function () {
             type: 'post',
             success: function (response) {
 
-                // window.location = response;
+                window.location = response;
                 //console.log("upload success (?)", response);
-                $("#error").html(response);
+                //$("#error").html(response);
                 // alert(response); // display success response from the server
             },
             error: function (response) {
@@ -49,7 +49,7 @@ $(document).ready(function () {
     });
 });
 
-function compraLoja(idTitulo, valorTitulo, saldo,idUsuario) {
+function compraLoja(idTitulo, valorTitulo, saldo, idUsuario) {
     if (saldo < valorTitulo) {
         alert("Você não possui saldo para comprar esse item.");
     }
@@ -77,4 +77,11 @@ function compraLoja(idTitulo, valorTitulo, saldo,idUsuario) {
         ajax.send(data);
         window.location = "../view/postagens.php";
     }
+}
+
+function concluirTarefa(idTarefa, idUsuario, titulo){
+
+    $("#idTarefa").val(idTarefa);
+    $("#openPostModal").click();
+
 }
