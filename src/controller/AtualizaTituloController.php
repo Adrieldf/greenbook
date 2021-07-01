@@ -16,14 +16,13 @@ $entityManager = $factory->getEntityManager();
 $tituloRepository = $entityManager->getRepository(Titulo::class);
 $tituloRepository = tituloRepositoryClass($tituloRepository);
 
-echo $id;
 $titulo = $tituloRepository->findById($id);
 
 $titulo->setNome($nome);
 $titulo->setDescricao($descricao);
 $titulo->setValor($valor);
 
-$reuslt = $repository->save($titulo);
+$reuslt = $tituloRepository->save($titulo);
 
 function tituloRepositoryClass($myClass): TituloRepository
 {

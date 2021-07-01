@@ -26,22 +26,18 @@ class Publicacao
     /** @Column(type="string") */
     private string $texto;
 
-    /** @OneToOne(targetEntity="TarefaUsuario")
-     *  @Column (nullable=true)
-     */
+    /** @OneToOne(targetEntity="TarefaUsuario") */
     private TarefaUsuario $tarefa;
 
     /**
      * @ManyToOne(targetEntity="Usuario")
-     * @Column (nullable=true)
      */
-    private Usuario $usuario;
+    private ?Usuario $usuario;
 
     /**
      * @ManyToOne(targetEntity="Empresa")
-     * @Column (nullable=true)
      */
-    private Empresa $empresa;
+    private ?Empresa $empresa;
 
     /** @OneToMany(targetEntity="Comentario", mappedBy="publicacao", cascade="all") */
     private Collection $comentarios;
@@ -51,9 +47,6 @@ class Publicacao
 
     /** @ManyToMany(targetEntity="Reacao", cascade="all") */
     private Collection $reacao;
-    
-    /** @Column(type="string", nullable=true) */
-    private string $imagem;
 
     /** @Column(type="string", nullable=true) */
     private string $descricao;

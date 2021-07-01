@@ -27,7 +27,7 @@ $(document).ready(function () {
         form_data.append('imgFotoPost', $("#imgFotoPost").val());
 
         $.ajax({
-            url: 'http://localhost:81/greenbook/src/controller/AddPost.php', // point to server-side controller method
+            url: 'http://localhost/greenbook/src/controller/AddPost.php', // point to server-side controller method
             dataType: 'text', // what to expect back from the server
             cache: false,
             contentType: false,

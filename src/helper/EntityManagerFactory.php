@@ -8,7 +8,7 @@ use Doctrine\ORM\Tools\Setup;
 
 class EntityManagerFactory
 {
-    public function getEntityManager():  EntityManagerInterface
+    public function getEntityManager(): EntityManagerInterface
     {
         $rootDir = __DIR__ . '/../..';
         $config = Setup::createAnnotationMetadataConfiguration(
@@ -23,13 +23,21 @@ class EntityManagerFactory
 //            'host' => 'localhost:3307',
 //        ];
 
-        $connection = [
+        $connection = [ // elephant velho
             'driver' => 'pdo_pgsql',
             'dbname' => 'abrshrgy',
             'user' => 'abrshrgy',
             'password' => 'xePST8sb0aHgwg8DtXlHbOQua9rOXTCh',
             'host' => '35.198.51.18'
         ];
+
+//        $connection = [
+//            'driver' => 'pdo_pgsql',
+//            'dbname' => 'ypxejckd',
+//            'user' => 'ypxejckd',
+//            'password' => 'ZG0M8atW4cAwQZvQwQ9U7eykRcoySWqC',
+//            'host' => '35.198.51.18'
+//        ];
         return EntityManager::create($connection, $config);
     }
 }
