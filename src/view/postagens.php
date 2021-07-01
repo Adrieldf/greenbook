@@ -68,6 +68,14 @@ $usuarioRepository = $entityManager->getRepository(Usuario::class);
 $usuarioRepository = usuarioRepositoryClass($usuarioRepository);
 $usuario = $usuarioRepository->findById($_idUsuario);
 
+$qb = $entityManager->createQueryBuilder();
+$qb->select(array('u'))
+   ->from('greenbook\model\Usuario','u')
+   ->orderBy('u.pontuacaoGeral', 'DESC');
+
+
+$ranking = $qb->getQuery()->execute();
+
 function tarefaRepositoryClass($myClass): TarefaRepository
 {
     return $myClass;
@@ -129,6 +137,24 @@ $fotoPost = null;
                     <div id="home" class="container tab-pane active"><br>
                         <?php
                         foreach ($tarefas as $linha) {
+                            $tarefaRealizada= 0;
+                            foreach ($tarefasUsuario as $linha2){
+                                if($linha->getId()!=$linha2->getTarefa()->getId()){
+                                    continue;
+                                }
+                                if ($linha2->getUsuario()->getId() != $_idUsuario) {
+                                    continue;
+                                }
+                                if (!$linha2->isConcluida()) {
+                                    continue;
+                                }
+                                $tarefaRealizada = 1;
+                                break;
+                            }
+                            if($tarefaRealizada==1){
+                                continue;
+                            }
+
                             echo '<div class="container-fluid p-3 my-3 border tarefa">';
                             echo '<div class="row">';
                             echo '<div class="col-md-4"><h6>Tipo: ' . $linha->getTipoDeTarefa()->getNome() . '</h6></div>';
@@ -202,7 +228,7 @@ $fotoPost = null;
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($usuarios as $linha) {
+                                foreach ($ranking as $linha) {
                                     echo '<tr>';
                                     echo '<th>' . $linha->getPontuacaoGeral() . '</th>';
                                     echo '<th>' . $linha->getNome() . '</th>';
