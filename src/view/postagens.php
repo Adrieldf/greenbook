@@ -181,10 +181,11 @@ $fotoPost = null;
                             //echo '<div class="col-md-5">Imagem</div>';
                             echo '<div class="col-md-6" style="height: 100%">';
                             echo '<div class="loja-valor">Valor: ' . $linha->getValor() . '</div>';
-                            echo '<div class="loja-comprar"><input id="'.$linha->getId().'" class="loja-botao-comprar" type="submit" name="clickedL" value="Comprar"/></div>';
+                            echo '<a><div class="loja-comprar"><input id="loja-botao-comprar" class="loja-botao-comprar" type="submit" name="clickedL" value="Comprar"/></div></a>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
+                            echo '<input type="text" id="myInput" value="'.$linha->getId().'"style="display:none">';
                         }
                         ?>
 
