@@ -35,13 +35,13 @@ class Publicacao
      * @ManyToOne(targetEntity="Usuario")
      * @Column (nullable=true)
      */
-    private Usuario $usuario;
+    private ?Usuario $usuario = null;
 
     /**
      * @ManyToOne(targetEntity="Empresa")
      * @Column (nullable=true)
      */
-    private Empresa $empresa;
+    private ?Empresa $empresa = null;
 
     /** @OneToMany(targetEntity="Comentario", mappedBy="publicacao", cascade="all") */
     private Collection $comentarios;
