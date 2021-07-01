@@ -54,7 +54,9 @@ if(!$idEmpresa == ""){
         $tarefa = $repositoryTarefa->findById($idTarefa);
         $tarefaUsuario = new TarefaUsuario($tarefa, $usuario);
         $tarefaUsuario->setConcluida(true);
-
+        $usuario->addMoedas($tarefa->getValorEmMoedas());
+        $usuario->addPontos($tarefa->getValorEmPontos());
+        $userRepository->save($usuario);
         $repositoryTarefaUsuario->save($tarefaUsuario);
 
         $publicacao->setTarefa($tarefaUsuario);

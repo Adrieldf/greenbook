@@ -31,6 +31,7 @@ include("header.php");
 include("navbar.php");
 
 $_idUsuario = @$_SESSION["id_usuario"];
+$_empresa = @$_SESSION["empresa"];
 
 $factory = new EntityManagerFactory();
 $entityManager = $factory->getEntityManager();
@@ -59,6 +60,14 @@ $usuarios = $usuarioRepository->findAll();
 $publicacaoRepository = $entityManager->getRepository(Publicacao::class);
 $publicacaoRepository = publicacaoRepositoryClass($publicacaoRepository);
 $publicacoes = $publicacaoRepository->findAll();
+
+$qb = $entityManager->createQueryBuilder();
+$qb->select(array('u'))
+   ->from('greenbook\model\Publicacao','u')
+   ->orderBy('u.id', 'DESC');
+  
+$publicacoes = $qb->getQuery()->execute();
+
 
 $tituloRepository = $entityManager->getRepository(Titulo::class);
 $tituloRepository = tituloRepositoryClass($tituloRepository);
@@ -117,6 +126,7 @@ $fotoPost = null;
     <div class="container container-fluid p-3 my-3 border">
         <div class="row">
             <h2>Bem-vinda(o)!</h2>
+            <?php if (is_null($_empresa) || $_empresa == ""): ?>
             <div class="col-lg-5">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
@@ -240,6 +250,7 @@ $fotoPost = null;
                     </div>
                 </div>
             </div>
+            <?php endif ?>
             <div class="col-lg-7">
                 <div class="row">
                     <div class="col-lg-9">

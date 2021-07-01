@@ -31,7 +31,8 @@ if ($usuario) {
         preencheSessoes($usuario->getId(), $usuario->getNome(), false, $usuario->isAdmin());
 
         echo "<script> console.log('Login feito com sucesso! Usuario: ' " .  $_SESSION['nome_usuario'] . " </script>";
-        header("Location: ../view/perfil-usuario.php?id=" . $usuario->getId());
+        //header("Location: ../view/perfil-usuario.php?id=" . $usuario->getId());
+        header("Location: ../view/postagens.php");
         exit;
     } else {
         $problemas = TRUE;
@@ -43,7 +44,8 @@ if ($usuario) {
     if($empresa){
         if (strcmp($senha, $empresa->getSenha())) {
             preencheSessoes($empresa->getId(),$empresa->getNomeFantasia(), true, false);
-            header("Location: ../view/perfil-empresa.php?id=" . $empresa->getId());
+            //header("Location: ../view/perfil-empresa.php?id=" . $empresa->getId());
+             header("Location: ../view/postagens.php");
             exit;
         }
     }

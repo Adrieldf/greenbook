@@ -25,6 +25,7 @@ $(document).ready(function () {
         form_data.append('txtTitulo', $("#txtTitulo").val());
         form_data.append('txtDescricao', $("#txtDescricao").val());
         form_data.append('imgFotoPost', $("#imgFotoPost").val());
+        form_data.append('idTarefa', $("#idTarefa").val());
 
         $.ajax({
             url: 'http://localhost:81/greenbook/src/controller/AddPost.php', // point to server-side controller method
