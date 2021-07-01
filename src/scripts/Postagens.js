@@ -4,8 +4,10 @@ $(document).ready(function () {
         $('#uploadImagem').trigger('click');
     });
 
-    $("#loja-botao-comprar").click(() => {
-
+    $($("[name='clickedL']")).click(() => {
+        alert("gfr");
+        cliente = $("#loja-botao-comprar").attr('id');
+        alert(cliente);
     });
     
 
@@ -53,9 +55,9 @@ $(document).ready(function () {
         });
     });
 });
-
+/*
 function compraLoja(idTitulo,valorTitulo,saldo){
     if(saldo<valorTitulo){
         alert("Você não possui saldo para comprar esse item.");
     }
-}
+}*/
