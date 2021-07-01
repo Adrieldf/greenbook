@@ -20,11 +20,14 @@ $factory = new EntityManagerFactory();
 $entityManager = $factory->getEntityManager();
 
 $qb = $entityManager->createQueryBuilder();
+
 $qb->select(array('u'))
    ->from('greenbook\model\Usuario','u')
    ->orderBy('u.pontuacaoGeral', 'DESC');
 
-$usuarios = $qb->getQuery()->getArrayResult();
+
+$usuarios = $qb->getQuery()->execute();
+
 
 /*
 $usuarioRepository = $entityManager->getRepository(Usuario::class);
@@ -79,17 +82,17 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                         <tbody>
                             <?php
                             $contador = 1;
-                            echo $usuarios;
-                            /*foreach ($usuarios as $linha) {
+                            //echo $usuarios;
+                            foreach ($usuarios as $linha) {
                                 echo '<tr>';
-                                echo '<th>' . $usuarios . '</th>';
-                                //echo '<th>' . $linha->getNome() . '</th>';
+                                echo '<th>' . $linha->getPontuacaoGeral() . '</th>';
+                                echo '<th>' . $linha->getNome() . '</th>';
                                 echo '</tr>';
                                 $contador = $contador + 1;
                                 if($contador == 10){
                                     break;
                                 }
-                            }*/
+                            }
                             ?>
                         </tbody>
                     </table>
