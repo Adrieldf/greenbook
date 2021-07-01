@@ -161,7 +161,7 @@ $fotoPost = null;
                         ?></div>
                     <div id="menu2" class="container tab-pane fade"><br>
                         <?php
-                        echo '<h2 id="saldo">Saldo: '.$usuario->getMoedas() .'</h2>';
+                        echo '<h2>Saldo: '.$usuario->getMoedas() .'</h2>';
                         foreach ($titulos as $linha) {
 
                             $encontrou = 0;
@@ -181,7 +181,7 @@ $fotoPost = null;
                             //echo '<div class="col-md-5">Imagem</div>';
                             echo '<div class="col-md-6" style="height: 100%">';
                             echo '<div class="loja-valor">Valor: ' . $linha->getValor() . '</div>';
-                            echo '<div class="loja-comprar"><input class="loja-botao-comprar" onclick="compraLoja('.$linha->getId().','. $linha->getValor().','. $usuario->getMoedas() .')" type="submit" name="clicked" value="Comprar"/></div>';
+                            echo '<div class="loja-comprar"><input id="loja-botao-comprar" class="loja-botao-comprar" onclick="compraLoja('.$linha->getId().','. $linha->getValor().','. $usuario->getMoedas() .')" type="submit" name="clicked" value="Comprar"/></div>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
