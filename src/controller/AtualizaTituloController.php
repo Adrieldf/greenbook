@@ -11,13 +11,13 @@ $valor = @$_POST["txtValorUpdate"];
 $nome = @$_POST["txtNomeUpdate"];
 $id = @$_POST["txtIdEdit"];
 
-$entityManagerFactory = new EntityManagerFactory();
-$entityManager = $entityManagerFactory->getEntityManager();
-$repository = $entityManager->getRepository(Titulo::class);
-$repository = repositoryClass($repository);
+$factory = new EntityManagerFactory();
+$entityManager = $factory->getEntityManager();
+$tituloRepository = $entityManager->getRepository(Titulo::class);
+$tituloRepository = tituloRepositoryClass($tituloRepository);
 
-
-$titulo = $repository->findById($id);
+echo $id;
+$titulo = $tituloRepository->findById($id);
 
 $titulo->setNome($nome);
 $titulo->setDescricao($descricao);
@@ -25,7 +25,7 @@ $titulo->setValor($valor);
 
 $reuslt = $repository->save($titulo);
 
-function repositoryClass($myClass): TituloRepository
+function tituloRepositoryClass($myClass): TituloRepository
 {
     return $myClass;
 }

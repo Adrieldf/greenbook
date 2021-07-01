@@ -1,9 +1,13 @@
-
 $(document).ready(function () {
 
     $("#btnAddImagem").click(() => {
         $('#uploadImagem').trigger('click');
     });
+
+    $("#loja-botao-comprar").click(() => {
+
+    });
+    
 
     $('#uploadImagem').on('change', function () {
         var file_data = $('#uploadImagem').prop('files')[0];
@@ -49,3 +53,9 @@ $(document).ready(function () {
         });
     });
 });
+
+function compraLoja(idTitulo,valorTitulo,saldo){
+    if(saldo<valorTitulo){
+        alert("Você não possui saldo para comprar esse item.");
+    }
+}

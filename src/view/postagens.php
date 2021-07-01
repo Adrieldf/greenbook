@@ -11,11 +11,15 @@ use greenbook\model\TipoDeTarefa;
 use greenbook\model\Recompensa;
 use greenbook\model\Usuario;
 use greenbook\model\Publicacao;
+use greenbook\model\TarefaUsuario;
+use greenbook\model\Titulo;
 use greenbook\repository\UsuarioRepository;
 use greenbook\repository\RecompensaRepository;
 use greenbook\repository\TipoDeTarefaRepository;
 use greenbook\repository\TarefaRepository;
 use greenbook\repository\PublicacaoRepository;
+use greenbook\repository\TarefaUsuarioRepository;
+use greenbook\repository\TituloRepository;
 
 require_once("header.php");
 ?>
@@ -25,6 +29,9 @@ require_once("header.php");
 <?php
 include("header.php");
 include("navbar.php");
+
+$_idUsuario = @$_SESSION["id_usuario"];
+
 $factory = new EntityManagerFactory();
 $entityManager = $factory->getEntityManager();
 
@@ -35,6 +42,11 @@ $tiposTarefas = $tipoRepository->findAll();
 $tarefaRepository = $entityManager->getRepository(Tarefa::class);
 $tarefaRepository = tarefaRepositoryClass($tarefaRepository);
 $tarefas = $tarefaRepository->findAll();
+
+$tarefaUsuarioRepository = $entityManager->getRepository(TarefaUsuario::class);
+$tarefaUsuarioRepository = tarefaUsuarioRepositoryClass($tarefaUsuarioRepository);
+$tarefasUsuario = $tarefaUsuarioRepository->findAll();
+
 
 $recompensaRepository = $entityManager->getRepository(Recompensa::class);
 $recompensaRepository = recompensaRepositoryClass($recompensaRepository);
@@ -48,10 +60,24 @@ $publicacaoRepository = $entityManager->getRepository(Publicacao::class);
 $publicacaoRepository = publicacaoRepositoryClass($publicacaoRepository);
 $publicacoes = $publicacaoRepository->findAll();
 
+$tituloRepository = $entityManager->getRepository(Titulo::class);
+$tituloRepository = tituloRepositoryClass($tituloRepository);
+$titulos = $tituloRepository->findAll();
+
+$usuarioRepository = $entityManager->getRepository(Usuario::class);
+$usuarioRepository = usuarioRepositoryClass($usuarioRepository);
+$usuario = $usuarioRepository->findById($_idUsuario);
+
 function tarefaRepositoryClass($myClass): TarefaRepository
 {
     return $myClass;
 }
+
+function tarefaUsuarioRepositoryClass($myClass): TarefaUsuarioRepository
+{
+    return $myClass;
+}
+
 function tipoRepositoryClass($myClass): TipoDeTarefaRepository
 {
     return $myClass;
@@ -65,6 +91,11 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
     return $myClass;
 }
 function publicacaoRepositoryClass($myClass): PublicacaoRepository
+{
+    return $myClass;
+}
+
+function tituloRepositoryClass($myClass): TituloRepository
 {
     return $myClass;
 }
@@ -111,28 +142,46 @@ $fotoPost = null;
                     </div>
                     <div id="menu1" class="container tab-pane fade"><br>
                         <?php
-                        foreach ($tarefas as $linha) {
+                        foreach ($tarefasUsuario as $linha) {
+                            if ($linha->getUsuario()->getId() != $_idUsuario) {
+                                continue;
+                            }
+                            if (!$linha->isConcluida()) {
+                                continue;
+                            }
                             echo '<div class="container-fluid p-3 my-3 border tarefa">';
                             echo '<div class="row">';
-                            echo '<div class="col-md-4"><h6>Tipo: ' . $linha->getTipoDeTarefa()->getNome() . '</h6></div>';
-                            echo '<div class="col-md-4"><h6>Moedas: ' . $linha->getValorEmMoedas() . '</h6></div>';
-                            echo '<div class="col-md-4"><h6>Pontos: ' . $linha->getValorEmPontos() . '</h6></div>';
+                            echo '<div class="col-md-4"><h6>Tipo: ' . $linha->getTarefa()->getTipoDeTarefa()->getNome() . '</h6></div>';
+                            echo '<div class="col-md-4"><h6>Moedas: ' . $linha->getTarefa()->getValorEmMoedas() . '</h6></div>';
+                            echo '<div class="col-md-4"><h6>Pontos: ' . $linha->getTarefa()->getValorEmPontos() . '</h6></div>';
                             echo '</div>';
-                            echo '<h6 class="tarefaTexto">' . $linha->getDescricao() . '</h6>';
+                            echo '<h6 class="tarefaTexto">' . $linha->getTarefa()->getDescricao() . '</h6>';
                             echo '</div>';
                         }
                         ?></div>
                     <div id="menu2" class="container tab-pane fade"><br>
                         <?php
+                        echo '<h2 id="saldo">Saldo: '.$usuario->getMoedas() .'</h2>';
+                        foreach ($titulos as $linha) {
 
-                        foreach ($recompensas as $linha) {
+                            $encontrou = 0;
+                            foreach($usuario->getTitulos() as $userTitulo){
+                                if($userTitulo->getId()==$linha->getId()){
+                                    $encontrou = 1;
+                                    break;
+                                }
+                            }
+                            if($encontrou==1){
+                                continue;
+                            }
+
                             echo '<div class="container-fluid p-3 my-3 border loja">';
                             echo '<div class="row">';
-                            echo '<div class="col-md-4" style="word-wrap:break-word;">' . $linha->getDescricao() . '</div>';
-                            echo '<div class="col-md-5">Imagem</div>';
-                            echo '<div class="col-md-3" style="height: 100%">';
+                            echo '<div class="col-md-6" style="word-wrap:break-word;">' . $linha->getNome() . '</div>';
+                            //echo '<div class="col-md-5">Imagem</div>';
+                            echo '<div class="col-md-6" style="height: 100%">';
                             echo '<div class="loja-valor">Valor: ' . $linha->getValor() . '</div>';
-                            echo '<div class="loja-comprar"><input class="loja-botao-comprar" type="submit" name="clicked" value="Comprar"/></div>';
+                            echo '<div class="loja-comprar"><input class="loja-botao-comprar" onclick="compraLoja('.$linha->getId().','. $linha->getValor().','. $usuario->getMoedas() .')" type="submit" name="clicked" value="Comprar"/></div>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
