@@ -1,6 +1,7 @@
 <?php
 
 use greenbook\helper\EntityManagerFactory;
+use greenbook\model\Empresa;
 use greenbook\model\Publicacao;
 use greenbook\repository\PublicacaoRepository;
 use greenbook\model\Usuario;
@@ -24,7 +25,7 @@ $publicacao = new Publicacao($titulo);
 $publicacao->setDescricao($descricao);
 $publicacao->setImagem($imagem);
 
-if(!is_null($idEmpresa)){
+if(!$idEmpresa == ""){
     $empresaRepository = $entityManager->getRepository(Empresa::class);
     $empresaRepository = empresaRepositoryClass($empresaRepository);
     $empresa = $empresaRepository->findById($idEmpresa);
@@ -37,6 +38,7 @@ if(!is_null($idEmpresa)){
 }
 
 try {
+    echo $publicacao->getUsuario()->getNome();
     $repository->save($publicacao);
     
 }catch (Exception $e){
