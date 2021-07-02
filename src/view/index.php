@@ -50,7 +50,7 @@ function usuarioRepositoryClass($myClass): UsuarioRepository
                 <img height="300" width="300" src="../../img/green-tree-logo.jpg" alt="Arvore">
             </div>
             <div class="col-lg-6">
-                <h2>Grenbook</h2>
+                <h2>Greenbook</h2>
                 <h6>Quem somos?</h6>
                 <p>Criada a partir de um trabalho de faculdade, o Greenbok nasceu com o objetivo de unir
                     pessoas e divulgar ações sustentáveis. O site permite com que pessoas e empresas possam
